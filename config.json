@@ -1,0 +1,6 @@
+{
+  "GCLOUD_PROJECT": "nonohyes20180219",
+  "CLOUD_BUCKET": "nonohyes-bucket-1",
+	"DATA_BACKEND": "mongodb",
+	"MONGO_URL": "mongodb://nonohyes:20180217@220.230.112.62:27017/nonohyes"
+}

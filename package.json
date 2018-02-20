@@ -4,8 +4,55 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build",
+    "build": "npx babel src -d build --copy-files",
+    "test": "ava -s"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@google-cloud/debug-agent": "^2.3.2",
+    "@google-cloud/logging-winston": "^0.8.1",
+    "@google-cloud/storage": "^1.6.0",
+    "@google-cloud/trace-agent": "^2.4.1",
+    "ava": "^0.25.0",
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "eslint": "^4.18.0",
+    "express": "^4.16.2",
+    "express-winston": "^2.5.0",
+    "favicon": "0.0.2",
+    "get-title-at-url": "^1.1.5",
+    "keygenerator": "^1.0.4",
+    "mongoose": "^5.0.6",
+    "nconf": "^0.10.0",
+    "nodemailer": "^4.4.2",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
+    "request": "^2.83.0",
+    "supertest": "^3.0.0",
+    "url-exists": "^1.0.3",
+    "url-parse": "^1.2.0",
+    "winston": "^2.4.0"
+  },
+  "ava": {
+    "files": [
+      "src/**/*.test.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "babel": "inherit"
+  }
 }
