@@ -2,63 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/client.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/codeStyles/codeStyleConfig.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/dictionaries/1nept.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/jsLibraryMappings.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/env.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/jest/cssTransform.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/jest/fileTransform.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/paths.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/polyfills.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/webpack.config.dev.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/webpack.config.prod.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/config/webpackDevServer.config.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/scripts/build.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/scripts/start.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/scripts/test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/NoticeDialog/index.test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/index.scss" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/modules/reduxHelper.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/registerServiceWorker.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/reducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlForm/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlInfo/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/reducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/testConfig.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/auth.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/config.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/GCSFileManager/index.test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/appInfo/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/appInfo/index.test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/dbConnector/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/dbConnector/index.test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/generateKey.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/logging.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/sendEmail/config.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/sendEmail/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/lib/somethings.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/models/account.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/models/app.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/models/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/account/index-test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/account/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/app/index-test.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/app/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/routes/index.test.js" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" afterPath="$PROJECT_DIR$/client/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -94,8 +41,8 @@
           <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.gitignore">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+                <state relative-caret-position="20">
+                  <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -233,6 +180,7 @@
         <option value="$PROJECT_DIR$/src/auth.js" />
         <option value="$PROJECT_DIR$/src/routes/account/index.js" />
         <option value="$PROJECT_DIR$/src/routes/app/index.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -451,16 +399,15 @@
       <updated>1518852752377</updated>
       <workItem from="1518852754089" duration="14430000" />
       <workItem from="1519020898416" duration="9455000" />
-      <workItem from="1519117663161" duration="1164000" />
+      <workItem from="1519117663161" duration="1285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25049000" />
+    <option name="totallyTimeSpent" value="25170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="720" y="50" width="1879" height="1006" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14669533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -812,8 +759,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="20">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
