@@ -4,12 +4,11 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
-import ListIcon from 'material-ui-icons/Menu';
 import SearchIcon from 'material-ui-icons/Search';
 import MoreIcon from 'material-ui-icons/More';
 import AppIcon from 'material-ui-icons/Apps';
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import Input from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 
 const styles = {
   appBar: {

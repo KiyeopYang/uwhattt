@@ -1,5 +1,5 @@
 /* global fetch */
-import * as cookie from 'modules/cookie';
+import { setAuth } from '../../modules/auth';
 import {
   makeActionLabels,
   makeFetchActions,
@@ -19,7 +19,7 @@ const {
   },
   {
     onSuccess: function(data) {
-      cookie.set('id', data.id);
+      setAuth(data.id);
     },
   },
 );

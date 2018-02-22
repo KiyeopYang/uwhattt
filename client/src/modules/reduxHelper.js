@@ -4,7 +4,8 @@ import apiFetch from './apiFetch';
 const WAITING = 'WAITING';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
-function makeActionLabels(base, arr = [WAITING, SUCCESS, FAILURE]) {
+const INIT = 'INIT';
+function makeActionLabels(base, arr = [WAITING, SUCCESS, FAILURE, INIT]) {
   return arr.reduce((acc, type) => {
     acc[type] = `${base}/${type}`;
     return acc
@@ -57,11 +58,15 @@ function makeFetchActions(actions, fetchOptions = {}, { onSuccess, onFailure } =
       }
     }
   };
+  const init = () => ({
+    type: actions.INIT,
+  });
   return {
     waiting,
     success,
     failure,
     request,
+    init,
   }
 }
 
@@ -88,6 +93,12 @@ function makeFetchReducers(ACTIONS) {
         return update(state, {
           isFetching: { $set: false },
           error: { $set: action.error },
+          data: { $set: null },
+        });
+      case ACTIONS.INIT:
+        return update(state, {
+          isFetching: { $set: false },
+          error: { $set: null },
           data: { $set: null },
         });
       default:

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
+import LoadingButton from 'components/LoadingButton';
 
 const styles = {
   centerText: {
@@ -9,19 +9,16 @@ const styles = {
   },
 };
 class UrlForm extends React.Component {
-  constructor(props) {
-    super(props);
-    const { urlInfo } = this.props;
-    this.state = {
-      url: urlInfo ? urlInfo.url : '',
-    };
-  }
-  handleInputChange = (prop) => (e) => {
-    this.setState({ [prop]: e.target.value });
-  };
   render() {
-    const { classes, onSubmit, disabled } = this.props;
-    const { url } = this.state;
+    const {
+      classes,
+      inputs,
+      onSubmit,
+      loading,
+      success,
+      handleInputChange,
+    } = this.props;
+    const { url } = inputs;
     return (
       <form>
         <TextField
@@ -31,21 +28,25 @@ class UrlForm extends React.Component {
           fullWidth
           helperText="ex) https://google.com"
           value={url}
-          onChange={this.handleInputChange('url')}
-          disabled={disabled}
+          onChange={handleInputChange('url')}
+          disabled={success}
         />
         {
-          !disabled ?
+          !success ?
             <div className={classes.centerText}>
-              <Button
+              <LoadingButton
                 type="submit"
+                color="primary"
+                loading={loading}
+                disabled={loading}
+                success={success}
                 onClick={(e) => {
                   e.preventDefault();
                   onSubmit(url);
                 }}
               >
                 Submit
-              </Button>
+              </LoadingButton>
             </div> : null
         }
       </form>

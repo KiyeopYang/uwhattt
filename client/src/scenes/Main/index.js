@@ -10,18 +10,20 @@ import { loader } from 'data/loader/actions';
 import * as noticeDialogActions from 'data/noticeDialog/actions';
 import Header from './scenes/Header';
 import AddApp from './scenes/AddApp';
+import AppList from './scenes/AppList';
 import Layout from './components/Layout';
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <React.Fragment>
         <Header />
         <Layout>
           <Switch>
+            <Route
+              path={'/appList'}
+              component={AppList}
+            />
             <Route
               path={'/addApp'}
               component={AddApp}

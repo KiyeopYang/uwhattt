@@ -5,6 +5,7 @@ import auth from './auth/reducer';
 import removeAccount from './removeAccount/reducer';
 import login from './login/reducer';
 import signUp from './signUp/reducer';
+import messageBar from './messageBar/reducer';
 
 export default combineReducers({
   loader,
@@ -13,4 +14,5 @@ export default combineReducers({
   removeAccount,
   login,
   signUp,
+  messageBar,
 });

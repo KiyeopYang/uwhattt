@@ -24,8 +24,9 @@ class Header extends React.Component {
     const { push } = this.props;
     switch (clicked) {
       case 'titleClick':
-        this.setState({ isSearchMode: true });
-        push('/search');
+        // 잠시
+        // this.setState({ isSearchMode: true });
+        push('/appList');
         break;
       case 'addApp':
         this.setState({ isSearchMode: false });
@@ -35,12 +36,11 @@ class Header extends React.Component {
         this.setState({ isSearchMode: false });
         push('/');
         break;
+      default:
+        break;
     }
   };
   render() {
-    const {
-      auth,
-    } = this.props;
     const { isSearchMode } = this.state;
     return (
       <Layout>
@@ -53,7 +53,6 @@ class Header extends React.Component {
         <DrawerMenu
           open={this.state.isDrawerOpen}
           onClose={this.toggleDrawer(false)}
-          account={auth.data}
           onSelect={this.onSelect}
         />
       </Layout>

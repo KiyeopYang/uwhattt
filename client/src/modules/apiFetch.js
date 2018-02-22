@@ -1,11 +1,10 @@
 /* global fetch */
 import update from 'react-addons-update';
 import config from '../config';
-import * as cookie from './cookie';
+import { getAuth } from './auth';
 
 function auth(headers) {
-  const id = cookie.get('id');
-  if (!id) { throw new Error('ID NOT FOUND'); }
+  const id = getAuth();
   const Authorization = `Bearer ${id}`;
   return update(headers || {}, { Authorization: { $set: Authorization }});
 }

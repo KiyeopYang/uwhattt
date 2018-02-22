@@ -1,4 +1,5 @@
 function set(cname, cvalue, exdays = 365) {
+  if (!cvalue) { return remove(cname); }
   let d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();

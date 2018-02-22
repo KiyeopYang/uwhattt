@@ -5,18 +5,18 @@ import Promise from 'bluebird';
 import URL from 'url-parse';
 
 function getFavicon(url) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     faviconCb(url, (error, favicon) => {
-      if (error) { reject(error); }
+      if (error) { resolve(); }
       else { resolve(favicon); }
     });
   });
 }
 function getTitle(url) {
-  return new Promise((resolve, reject) => {
-    getTitleCb(url, (title, error) => {
+  return new Promise((resolve) => {
+    getTitleCb(url, (title) => {
       if (!title || title === '') {
-        reject(error);
+        resolve();
       } else {
         resolve(title);
       }
@@ -26,7 +26,7 @@ function getTitle(url) {
 function urlExists(url) {
   return new Promise((resolve, reject) => {
     urlExistsCb(url, (error, exists) => {
-      if (error) { reject(error); }
+      if (error || !exists) { reject(error); }
       else {
         resolve(exists);
       }
@@ -34,15 +34,18 @@ function urlExists(url) {
   });
 }
 async function getInfo(url) {
-  try {
-    await urlExists(url);
-    return {
-      favicon: await getFavicon(url),
-      title: await getTitle(url),
-    };
-  } catch (error) {
-    throw error;
-  }
+  await urlExists(url);
+  const [
+    favicon,
+    title,
+  ] = await Promise.all([
+    getFavicon(url),
+    getTitle(url),
+  ]);
+  return {
+    favicon,
+    title,
+  };
 }
 
 export {

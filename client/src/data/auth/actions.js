@@ -1,5 +1,5 @@
 /* global fetch */
-import * as cookie from 'modules/cookie';
+import { setAuth } from '../../modules/auth';
 import {
   makeActionLabels,
   makeFetchActions,
@@ -19,7 +19,7 @@ const {
 
 const logout = () => {
   return (dispatch) => {
-    cookie.remove('apiKey');
+    setAuth(null);
     return dispatch(failure({ message: '로그아웃' }));
   };
 };

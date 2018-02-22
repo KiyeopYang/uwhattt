@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import { FormControlLabel } from 'material-ui/Form';
 import Switch from 'material-ui/Switch';
 
 const styles = {
@@ -20,55 +20,27 @@ const styles = {
   },
 };
 class UrlInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    const { favicon, title } = this.props;
-    this.state = {
-      favicon,
-      title,
-      doUseUploadedImg: false,
-      uploadedImgCanvas: null,
-    };
-  }
-  handleInputChange = (prop, option) => (e) => {
-    this.setState({ [prop]: option ? e.target[option] : e.target.value });
-  };
-  handleImgUpload = e => {
-    const input = e.target;
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = re => {
-        const img = new Image();
-        img.onload = () => {
-          const uploadedImgCanvas = document.createElement('canvas');
-          const ctx = uploadedImgCanvas.getContext('2d');
-          uploadedImgCanvas.width = img.width;
-          uploadedImgCanvas.height = img.height;
-          ctx.drawImage(img, 0, 0, img.width, img.height);
-          this.setState({
-            uploadedImgCanvas,
-          });
-        };
-        img.src = re.target.result;
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  };
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      inputs,
+      handleInputChange,
+      success,
+    } = this.props;
     const {
       favicon,
       title,
       doUseUploadedImg,
-      uploadedImgCanvas,
-    } = this.state;
+      uploadedImg,
+    } = inputs;
     return (
       <React.Fragment>
         <div className={classes.imgForm}>
           <img
+            alt="favicon"
             src={
-              doUseUploadedImg && uploadedImgCanvas?
-                uploadedImgCanvas.toDataURL() : favicon
+              doUseUploadedImg && uploadedImg?
+                uploadedImg.canvas.toDataURL() : favicon
             }
             width="64"
             height="64"
@@ -77,8 +49,9 @@ class UrlInfo extends React.Component {
             control={
               <Switch
                 checked={doUseUploadedImg}
-                onChange={this.handleInputChange('doUseUploadedImg', 'checked')}
+                onChange={handleInputChange('doUseUploadedImg', 'switch')}
                 color="primary"
+                disabled={success}
               />
             }
             label="Upload an Image"
@@ -91,10 +64,16 @@ class UrlInfo extends React.Component {
                   className={classes.input}
                   id="uploadAnImage"
                   type="file"
-                  onChange={this.handleImgUpload}
+                  onChange={handleInputChange(null, 'img')}
+                  disabled={success}
                 />
                 <label htmlFor="uploadAnImage">
-                  <Button variant="raised" component="span" color="primary">
+                  <Button
+                    variant="raised"
+                    component="span"
+                    color="primary"
+                    disabled={success}
+                  >
                     Upload
                   </Button>
                 </label>
@@ -107,8 +86,8 @@ class UrlInfo extends React.Component {
           margin="normal"
           fullWidth
           value={favicon}
-          onChange={this.handleInputChange('favicon')}
-          disabled={doUseUploadedImg}
+          onChange={handleInputChange('favicon')}
+          disabled={doUseUploadedImg || success}
         />
         <TextField
           id="Title"
@@ -116,7 +95,8 @@ class UrlInfo extends React.Component {
           margin="normal"
           fullWidth
           value={title}
-          onChange={this.handleInputChange('title')}
+          onChange={handleInputChange('title')}
+          disabled={success}
         />
       </React.Fragment>
     );
