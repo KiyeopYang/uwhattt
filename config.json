@@ -1,6 +1,9 @@
 {
-  "GCLOUD_PROJECT": "nonohyes20180219",
-  "CLOUD_BUCKET": "nonohyes-bucket-1",
+    "GCLOUD_PROJECT": "nonohyes20180219",
+    "CLOUD_BUCKET": "nonohyes20180219",
 	"DATA_BACKEND": "mongodb",
-	"MONGO_URL": "mongodb://nonohyes:20180217@220.230.112.62:27017/nonohyes"
+	"MONGO_URL": "mongodb://nonohyes:20180217@220.230.112.62:27017/nonohyes",
+    "OAUTH2_CLIENT_ID": "707056784170-kp6p9cjrtd2oau4n2iifuc7e8jp92hdn.apps.googleusercontent.com",
+    "OAUTH2_CLIENT_SECRET": "E0zTwnBKp2IMz9ezkXlw4qws",
+    "OAUTH2_CALLBACK": "http://localhost:8080/auth/google/callback"
 }
