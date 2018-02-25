@@ -4,19 +4,31 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
+import apiFetch from '../../modules/apiFetch';
 
 const ACTIONS = makeActionLabels('data/auth');
 const {
-  request,
+  waiting,
+  success,
   failure,
 } = makeFetchActions(
   ACTIONS,
-  {
-    path: '/account',
-    autoAuth: true,
-  },
 );
 
+const request = () => {
+  return async (dispatch) => {
+    dispatch(waiting());
+    try {
+      const data = await apiFetch({
+        path: '/app',
+        autoAuth: true,
+      });
+      dispatch(success(data));
+    } catch (error) {
+      dispatch(failure(error));
+    }
+  }
+};
 const logout = () => {
   return (dispatch) => {
     setAuth(null);

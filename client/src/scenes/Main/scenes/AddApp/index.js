@@ -23,9 +23,9 @@ class AddApp extends React.Component {
       addWithCustomImgRequest,
     } = this.props;
     if (withCustomImg) {
-      addWithCustomImgRequest({ body });
+      addWithCustomImgRequest(body);
     } else {
-      addRequest({ body });
+      addRequest(body);
     }
   };
   toAppPage = () => {
@@ -42,7 +42,7 @@ class AddApp extends React.Component {
     return (
       <Layout>
         <Form
-          getUrlInfo={url => urlInfoRequest({ params: encodeURIComponent(url) })}
+          getUrlInfo={url => urlInfoRequest(encodeURIComponent(url))}
           urlInfo={urlInfo}
           add={add}
           toAppPage={this.toAppPage}

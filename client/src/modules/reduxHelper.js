@@ -24,40 +24,40 @@ function makeFetchActions(actions, fetchOptions = {}, { onSuccess, onFailure } =
     type: actions.FAILURE,
     error,
   });
-  const request = ({ params, body } = {}) => {
-    return async (dispatch) => {
-      dispatch(waiting());
-      try {
-        const { options } = fetchOptions;
-        let newOptions;
-        if (body) {
-          let stringified;
-          if (options && options.headers) {
-            const { headers } = options;
-            if (headers['Content-Type'] && headers['Content-Type'] === 'application/json') {
-              stringified = JSON.stringify(body);
-            }
-          }
-          newOptions = update(
-            options || {},
-            { body: { $set: stringified } },
-          );
-        }
-        const { path, host, autoAuth } = fetchOptions;
-        const data = await apiFetch({
-          path: params ? `${path}/${params}` : path,
-          host,
-          options: newOptions || options,
-          autoAuth,
-        });
-        dispatch(success(data));
-        if (onSuccess) { onSuccess(data); }
-      } catch (error) {
-        dispatch(failure(error));
-        if (onFailure) { onFailure(error); }
-      }
-    }
-  };
+  // const request = ({ params, body } = {}) => {
+  //   return async (dispatch) => {
+  //     dispatch(waiting());
+  //     try {
+  //       const { options } = fetchOptions;
+  //       let newOptions;
+  //       if (body) {
+  //         let stringified;
+  //         if (options && options.headers) {
+  //           const { headers } = options;
+  //           if (headers['Content-Type'] && headers['Content-Type'] === 'application/json') {
+  //             stringified = JSON.stringify(body);
+  //           }
+  //         }
+  //         newOptions = update(
+  //           options || {},
+  //           { body: { $set: stringified } },
+  //         );
+  //       }
+  //       const { path, host, autoAuth } = fetchOptions;
+  //       const data = await apiFetch({
+  //         path: params ? `${path}/${params}` : path,
+  //         host,
+  //         options: newOptions || options,
+  //         autoAuth,
+  //       });
+  //       dispatch(success(data));
+  //       if (onSuccess) { onSuccess(data); }
+  //     } catch (error) {
+  //       dispatch(failure(error));
+  //       if (onFailure) { onFailure(error); }
+  //     }
+  //   }
+  // };
   const init = () => ({
     type: actions.INIT,
   });
@@ -65,7 +65,7 @@ function makeFetchActions(actions, fetchOptions = {}, { onSuccess, onFailure } =
     waiting,
     success,
     failure,
-    request,
+    // request,
     init,
   }
 }

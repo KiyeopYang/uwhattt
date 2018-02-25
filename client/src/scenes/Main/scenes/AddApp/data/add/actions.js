@@ -15,7 +15,7 @@ const {
 } = makeFetchActions(
   ACTIONS,
 );
-const request = ({ params, body } = {}) => {
+const request = (body) => {
   return async (dispatch) => {
     dispatch(waiting());
     try {
@@ -33,7 +33,7 @@ const request = ({ params, body } = {}) => {
     }
   }
 };
-const requestWithCustomImg = ({ params, body } = {}) => {
+const requestWithCustomImg = (body) => {
   return async (dispatch) => {
     dispatch(waiting());
     try {

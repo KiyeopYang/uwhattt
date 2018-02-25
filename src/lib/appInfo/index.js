@@ -1,8 +1,9 @@
 import faviconCb from 'favicon';
 import getTitleCb from 'get-title-at-url';
-import urlExistsCb from 'url-exists';
 import Promise from 'bluebird';
-import URL from 'url-parse';
+import http from 'http';
+import URL from 'url';
+import request from 'request';
 
 function getFavicon(url) {
   return new Promise((resolve) => {
@@ -25,11 +26,9 @@ function getTitle(url) {
 }
 function urlExists(url) {
   return new Promise((resolve, reject) => {
-    urlExistsCb(url, (error, exists) => {
-      if (error || !exists) { reject(error); }
-      else {
-        resolve(exists);
-      }
+    request(url, (e, r) => {
+      if (e) reject(e);
+      else resolve(r.statusCode !== 404);
     });
   });
 }

@@ -29,7 +29,10 @@ class Form extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     const { data } = nextProps.urlInfo;
-    if (data) {
+    if (data &&
+      JSON.stringify(this.props.urlInfo.data) !==
+        JSON.stringify(data)
+    ) {
       this.setState({
         url: data.url,
         favicon: data.favicon,

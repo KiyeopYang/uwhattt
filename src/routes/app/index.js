@@ -103,6 +103,67 @@ router.post(
   '/withCustomImg',
   multer.single('file'),
   async (req, res) => {
+    console.log(req.get('Content-Type'));
+    const PROCESS = '추가';
+    try {
+      const { file, body } = req;
+      const {
+        title,
+        isHttps,
+        domain,
+        path,
+      } = JSON.parse(body.data);
+      const url = await upload({
+        filename: `${keyGen()}${pathLib.extname(file.originalname)}`,
+        dir: 'appImages',
+        content: file.buffer,
+      });
+      let app = await new App({
+        favicon: url,
+        title,
+        isHttps,
+        domain,
+        path,
+      }).save();
+      res.json(fromMongo(app.toObject()));
+    } catch (error) {
+      logging.error(error);
+      res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
+    }
+  },
+);
+// 수정
+router.post(
+  '/',
+  async (req, res) => {
+    const PROCESS = '추가';
+    try {
+      const {
+        favicon,
+        title,
+        isHttps,
+        domain,
+        path,
+      } = req.body;
+      let app = await new App({
+        favicon,
+        title,
+        isHttps,
+        domain,
+        path,
+      }).save();
+      res.json(fromMongo(app.toObject()));
+    } catch (error) {
+      logging.error(error);
+      res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
+    }
+  },
+);
+// 추가(파일)
+router.post(
+  '/withCustomImg',
+  multer.single('file'),
+  async (req, res) => {
     const PROCESS = '추가';
     try {
       const { file, body } = req;
@@ -147,6 +208,22 @@ router.get(
     }
   },
 );
+router.post(
+  '/getAppList',
+  async (req, res) => {
+    const PROCESS = '조회';
+    try {
+      const { body } = req;
+      const appList =  await App.find({ _id: { $in: body} }).lean().exec();
+      res.json(fromMongo(body.map(id => appList.find(o => String(o._id)===id))));
+    } catch (error) {
+      logging.error(error);
+      res.status(400).json({
+        message: `${NAME} ${PROCESS} 에러`,
+      });
+    }
+  },
+);
 router.get(
   '/',
   async (req, res) => {
@@ -162,6 +239,7 @@ router.get(
     }
   },
 );
+
 // 삭제
 router.delete(
   '/:id',

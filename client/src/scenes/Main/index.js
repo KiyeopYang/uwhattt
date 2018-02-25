@@ -11,6 +11,7 @@ import * as noticeDialogActions from 'data/noticeDialog/actions';
 import Header from './scenes/Header';
 import AddApp from './scenes/AddApp';
 import AppList from './scenes/AppList';
+import MyApp from './scenes/MyApp';
 import Layout from './components/Layout';
 
 class Main extends React.Component {
@@ -27,6 +28,10 @@ class Main extends React.Component {
             <Route
               path={'/addApp'}
               component={AddApp}
+            />
+            <Route
+              path={'/'}
+              component={MyApp}
             />
           </Switch>
         </Layout>

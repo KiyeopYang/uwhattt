@@ -3,18 +3,31 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
+import apiFetch from '../../../../../../modules/apiFetch';
 
 const ACTIONS = makeActionLabels('Main/AddApp/data/urlInfo');
 
 const {
-  request,
+  waiting,
+  success,
+  failure,
   init,
 } = makeFetchActions(
   ACTIONS,
-  {
-    path: '/app/info',
-  },
 );
+const request = (id) => {
+  return async (dispatch) => {
+    dispatch(waiting());
+    try {
+      const data = await apiFetch({
+        path: `/app/info/${id}`,
+      });
+      dispatch(success(data));
+    } catch (error) {
+      dispatch(failure(error));
+    }
+  }
+};
 
 export {
   ACTIONS,

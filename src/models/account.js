@@ -28,13 +28,9 @@ const Account = new Schema({
   },
   appList: [
     {
-      app: {
-        type: Schema.Types.ObjectId,
-        ref: 'app',
-      },
-      number: {
-        type: Number,
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'app',
+      unique: true,
     },
   ],
   level: {

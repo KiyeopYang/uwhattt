@@ -7,11 +7,13 @@ const styles = theme => ({
     textAlign: 'center',
   },
 });
-function Form ({ classes, children }) {
+function Form ({ classes, add, ...rest }) {
   return (
     <div className={classes.form}>
       <LoadingButton
         color="primary"
+        onClick={add}
+        {...rest}
       >
         Add to My App
       </LoadingButton>

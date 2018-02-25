@@ -3,20 +3,33 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
+import apiFetch from '../../modules/apiFetch';
 
 const ACTIONS = makeActionLabels('data/removeAccount');
 const {
-  request,
+  waiting,
+  success,
+  failure,
 } = makeFetchActions(
-  ACTIONS,
-  {
-    path: '/account',
-    options: {
-      method: 'DELETE',
-    },
-    autoAuth: true,
-  },
+  ACTIONS
 );
+const request = () => {
+  return async (dispatch) => {
+    dispatch(waiting());
+    try {
+      const data = await apiFetch({
+        path: '/account',
+        options: {
+          method: 'DELETE',
+        },
+        autoAuth: true,
+      });
+      dispatch(success(data));
+    } catch (error) {
+      dispatch(failure(error));
+    }
+  }
+};
 
 export {
   ACTIONS,
