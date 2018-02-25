@@ -40,7 +40,7 @@ class UrlInfo extends React.Component {
             alt="favicon"
             src={
               doUseUploadedImg && uploadedImg?
-                uploadedImg.canvas.toDataURL() : favicon
+                uploadedImg.url : favicon
             }
             width="64"
             height="64"

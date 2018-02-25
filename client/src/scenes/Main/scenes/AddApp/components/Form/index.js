@@ -122,6 +122,7 @@ class Form extends React.Component {
                 uploadedImg: {
                   canvas,
                   name: input.files[0].name,
+                  url: canvas.toDataURL(),
                 },
               });
             };
