@@ -2,35 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/modules/myAppFromCookie.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/reducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/App/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/Layout/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/data/reducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/index.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/reducer.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" afterPath="$PROJECT_DIR$/client/.gitignore" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" afterPath="$PROJECT_DIR$/client/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
       <change beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/auth/actions.js" afterPath="$PROJECT_DIR$/client/src/data/auth/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/login/actions.js" afterPath="$PROJECT_DIR$/client/src/data/login/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/removeAccount/actions.js" afterPath="$PROJECT_DIR$/client/src/data/removeAccount/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/signUp/actions.js" afterPath="$PROJECT_DIR$/client/src/data/signUp/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/reduxHelper.js" afterPath="$PROJECT_DIR$/client/src/modules/reduxHelper.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/reducer.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/add/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/add/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/components/Form/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/components/Form/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/lib/appInfo/index.js" afterPath="$PROJECT_DIR$/src/lib/appInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/models/account.js" afterPath="$PROJECT_DIR$/src/models/account.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/app/index.js" afterPath="$PROJECT_DIR$/src/routes/app/index.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/App/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/App/index.js" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.59962404">
+    <splitter split-orientation="horizontal" split-proportion="0.71025395">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
@@ -56,8 +32,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1301">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="577">
+                  <caret line="103" column="19" lean-forward="true" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -272,7 +248,6 @@
         <option value="$PROJECT_DIR$/src/lib/appInfo/index.test.js" />
         <option value="$PROJECT_DIR$/src/routes/app/index-test.js" />
         <option value="$PROJECT_DIR$/src/config.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/lib/logging.js" />
         <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
         <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.test.js" />
@@ -300,6 +275,7 @@
         <option value="$PROJECT_DIR$/src/models/account.js" />
         <option value="$PROJECT_DIR$/src/routes/app/index.js" />
         <option value="$PROJECT_DIR$/client/.gitignore" />
+        <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
   </component>
@@ -501,19 +477,19 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="8569000" />
+      <workItem from="1519463586255" duration="9836000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51317000" />
+    <option name="totallyTimeSpent" value="52584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="370" y="0" width="1553" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3068404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13941368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -925,14 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1301">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
@@ -947,6 +915,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="103" column="19" lean-forward="true" selection-start-line="103" selection-start-column="19" selection-end-line="103" selection-end-column="19" />
           <folding />
         </state>
       </provider>

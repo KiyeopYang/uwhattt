@@ -10,9 +10,15 @@ const styles = theme => ({
     overflow: 'hidden',
     textAlign: 'center',
     cursor: 'pointer',
+    userDrag: 'none',
+    userSelect: 'none',
   },
   img: {
     margin: theme.spacing.unit,
+    userDrag: 'none',
+    userSelect: 'none',
+  },
+  typo: {
     userDrag: 'none',
     userSelect: 'none',
   },
@@ -27,7 +33,7 @@ function App ({ classes, favicon, title, ...props }) {
         width="32"
         height="32"
       />
-      <Typography variant="subheading" gutterBottom>
+      <Typography className={classes.typo} variant="subheading" gutterBottom>
         { title }
       </Typography>
     </div>
