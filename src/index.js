@@ -17,10 +17,10 @@ const app = express();
 if (process.env.NODE_ENV === 'production') {
   traceAgent.start();
   debugAgent.start();
-  app.use((req, res, next) => {
-    if (req.secure) return next();
-    return res.redirect(`https://${req.headers.host}${req.url}`);
-  });
+  // app.use((req, res, next) => {
+  //   if (req.secure) return next();
+  //   return res.redirect(`https://${req.headers.host}${req.url}`);
+  // });
 } else {
 // ONLY FOR DEVELOPMENT
   app.use((req, res, next) => {

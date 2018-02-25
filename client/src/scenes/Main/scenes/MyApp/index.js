@@ -87,8 +87,11 @@ class MyApp extends React.Component {
     if (isPressed && new Date().getTime() - isPressed.getTime() > TIME_TO_MOVE_APP) {
       const mouseXY = [pageX - dx, pageY - dy];
       const col = clamp(Math.round(mouseXY[0] / this.state.appWidth), 0, this.state.cols - 1);
-      const row = clamp(Math.round(mouseXY[1] / this.state.appHeight), 0, Math.floor(initialAppList.length / this.state.cols) - 1);
-      const index = row * this.state.cols + col;
+      const row = clamp(Math.round(mouseXY[1] / this.state.appHeight), 0, Math.floor(initialAppList.length / this.state.cols));
+      let index = row * this.state.cols + col;
+      if (index >= initialAppList.length) {
+        index = initialAppList.length - 1;
+      }
       const newAppList = reinsert(initialAppList, initialAppList.findIndex(o => o.id === lastPress), index);
       this.setState({mouseXY, appList: newAppList });
     }
