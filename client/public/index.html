@@ -19,41 +19,9 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <link href="/index.css" rel="stylesheet">
     <link href="/loader.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        font-family: Roboto, sans-serif;
-      }
-      body, #root {
-        /* 안드로이드 크롬 브라우저 기본 새로고침 행동 지우기*/
-        /* Break the flow */
-        position: absolute;
-        top: 0;
-
-        /* Give them all the available space */
-        width: 100%;
-        height: 100%;
-
-        /* Remove the margins if any */
-        margin: 0;
-
-        /* Allow them to scroll down the document */
-        overflow-y: hidden;
-      }
-      body {
-        /* Sending body at the bottom of the stack */
-        z-index: 1;
-      }
-      #root {
-        /* Making the wrapper stack above the body */
-        z-index: 2;
-        overflow-y: auto;
-      }
-    </style>
     <title>Base_Auth_Client</title>
   </head>
   <body>

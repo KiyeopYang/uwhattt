@@ -17,10 +17,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     userDrag: 'none',
     userSelect: 'none',
+    pointerEvents: 'none',
   },
   typo: {
     userDrag: 'none',
     userSelect: 'none',
+    pointerEvents: 'none',
   },
 });
 function App ({ classes, favicon, title, ...props }) {
