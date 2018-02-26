@@ -77,7 +77,7 @@ function Bar(props) {
                 color="inherit"
                 onClick={onTitleClick}
               >
-                Nonohyes
+                안돼 안돼 돼
                 <SearchIcon/>
               </Typography>
             </div>

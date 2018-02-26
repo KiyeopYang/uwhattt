@@ -2,56 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/modules/userFromLocal.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/addMyApp/actions.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/addMyApp/reducer.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/RemoveApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/lib/appInfo/index.js" afterPath="$PROJECT_DIR$/build/lib/appInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/build/routes/app/index.js" afterPath="$PROJECT_DIR$/build/routes/app/index.js" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" afterPath="$PROJECT_DIR$/client/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.css" afterPath="$PROJECT_DIR$/client/public/index.css" />
+      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" afterPath="$PROJECT_DIR$/client/public/favicon.ico" />
       <change beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" afterPath="$PROJECT_DIR$/client/src/App.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/MOCKUP/data/reducer.js" afterPath="$PROJECT_DIR$/client/src/MOCKUP/data/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/auth/actions.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/auth/reducer.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/login/actions.js" afterPath="$PROJECT_DIR$/client/src/data/login/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/messageBar/actions.js" afterPath="$PROJECT_DIR$/client/src/data/messageBar/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/reducer.js" afterPath="$PROJECT_DIR$/client/src/data/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/removeAccount/actions.js" afterPath="$PROJECT_DIR$/client/src/data/removeAccount/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/data/signUp/actions.js" afterPath="$PROJECT_DIR$/client/src/data/signUp/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" afterPath="$PROJECT_DIR$/client/src/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/apiFetch.js" afterPath="$PROJECT_DIR$/client/src/modules/apiFetch.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/auth.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/myAppFromCookie.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/reduxHelper.js" afterPath="$PROJECT_DIR$/client/src/modules/reduxHelper.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/modules/resizeImage.js" afterPath="$PROJECT_DIR$/client/src/modules/resizeImage.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/data/reducer.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/data/setMyApp/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/setMyApp/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/reducer.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/reducer.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlInfo/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
+      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" afterPath="$PROJECT_DIR$/client/public/manifest.json" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppList/scenes/AppInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/components/App/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/components/Layout/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/data/app/actions.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/data/app/reducer.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/data/reducer.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AppView/reducer.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/Header/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/Header/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/App/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/App/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/Layout/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/components/Layout/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/data/appList/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/data/appList/actions.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/Header/components/Bar/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/Header/components/Bar/index.js" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/MyApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/gce/startup-script.sh" afterPath="$PROJECT_DIR$/gce/startup-script.sh" />
-      <change beforePath="$PROJECT_DIR$/src/models/app.js" afterPath="$PROJECT_DIR$/src/models/app.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/app/index.js" afterPath="$PROJECT_DIR$/src/routes/app/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -77,8 +34,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="478">
-                  <caret line="160" column="9" lean-forward="false" selection-start-line="160" selection-start-column="9" selection-end-line="160" selection-end-column="9" />
+                <state relative-caret-position="470">
+                  <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
                   </folding>
@@ -109,8 +66,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/routes/account/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-81">
-                  <caret line="30" column="21" lean-forward="false" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+                <state relative-caret-position="1360">
+                  <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -383,7 +340,6 @@
         <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.test.js" />
         <option value="$PROJECT_DIR$/src/lib/sendEmail/config.json" />
         <option value="$PROJECT_DIR$/src/auth.js" />
-        <option value="$PROJECT_DIR$/src/routes/account/index.js" />
         <option value="$PROJECT_DIR$/client/public/index.html" />
         <option value="$PROJECT_DIR$/client/src/scenes/Main/data/reducer.js" />
         <option value="$PROJECT_DIR$/client/src/data/login/actions.js" />
@@ -408,6 +364,7 @@
         <option value="$PROJECT_DIR$/src/models/app.js" />
         <option value="$PROJECT_DIR$/src/routes/app/index.js" />
         <option value="$PROJECT_DIR$/client/src/data/user/actions.js" />
+        <option value="$PROJECT_DIR$/src/routes/account/index.js" />
       </list>
     </option>
   </component>
@@ -426,7 +383,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-26" />
     <option name="width" value="1668" />
     <option name="height" value="1038" />
@@ -642,19 +599,19 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="18655000" />
+      <workItem from="1519463586255" duration="19285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61403000" />
+    <option name="totallyTimeSpent" value="62033000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-26" y="0" width="1668" height="1038" extended-state="1" />
+    <frame x="-26" y="0" width="1668" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20545454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20545454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1068,16 +1025,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="160" column="9" lean-forward="false" selection-start-line="160" selection-start-column="9" selection-end-line="160" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/account.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="397">
@@ -1094,10 +1041,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/account/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="30" column="21" lean-forward="false" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="1360">
+          <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="8" />
           <folding />
         </state>
       </provider>

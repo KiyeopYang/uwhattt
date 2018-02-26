@@ -1,6 +1,6 @@
 {
-  "short_name": "WebPush",
-  "name": "WebPush",
+  "short_name": "안돼안돼돼",
+  "name": "안돼안돼돼",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,7 +10,7 @@
   ],
   "start_url": "./",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#3f51b5",
   "background_color": "#ffffff",
   "gcm_sender_id": "327010964386"
 }

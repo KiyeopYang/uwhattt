@@ -30,7 +30,7 @@ function reinsert(arr, from, to) {
 function clamp(n, min, max) {
   return Math.max(Math.min(n, max), min);
 }
-const TIME_TO_MOVE_APP = 1000;
+const TIME_TO_MOVE_APP = 500;
 class MyApp extends React.Component {
   constructor(props) {
     super(props);

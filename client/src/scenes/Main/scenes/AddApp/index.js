@@ -60,8 +60,8 @@ class AddApp extends React.Component {
           toAppPage={this.toAppPage}
           init={() => {
             this.setState({ urlInfoFound: false })
-            // urlInfoInit();
-            // addInit();
+            urlInfoInit();
+            addInit();
           }}
           submit={this.handleSubmit}
         />
