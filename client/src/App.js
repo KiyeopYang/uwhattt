@@ -4,9 +4,8 @@ import { bindActionCreators } from 'redux';
 import {
   withRouter,
 } from 'react-router-dom';
-import { getAuth } from 'modules/auth';
 import * as noticeDialogActions from './data/noticeDialog/actions';
-import * as authActions from './data/auth/actions';
+import * as userActions from './data/user/actions';
 import * as signUpActions from './data/signUp/actions';
 import * as loginActions from './data/login/actions';
 import { loader } from './data/loader/actions';
@@ -14,18 +13,17 @@ import NoticeDialog from './components/NoticeDialog';
 import MessageBar from './rootModules/MessageBar';
 import Main from './scenes/Main';
 import loaderDOM from './modules/loader';
+import 'loaders.css/loaders.min.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     loaderDOM(this.props.loaderState);
-    if (getAuth()) {
-      this.props.authRequest();
-    }
+    this.props.userRequest();
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.loaderState !== nextProps.loaderState) {
-      if (nextProps.auth.status === 'WAITING') {
+      if (nextProps.user.status === 'WAITING') {
         loaderDOM(true);
       } else {
         loaderDOM(nextProps.loaderState);
@@ -57,7 +55,7 @@ const mapStateToProps = state => ({
   state,
   noticeDialog: state.data.noticeDialog,
   loaderState: state.data.loader,
-  auth: state.data.auth,
+  user: state.data.user,
   login: state.data.login,
   signUp: state.data.signUp,
 });
@@ -65,8 +63,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   noticeDialogOn: noticeDialogActions.on,
   noticeDialogOff: noticeDialogActions.off,
   loader,
-  authRequest: authActions.request,
-  logout: authActions.logout,
+  userRequest: userActions.request,
+  logout: userActions.logout,
   loginRequest: loginActions.request,
   signUpRequest: signUpActions.request,
 }, dispatch);

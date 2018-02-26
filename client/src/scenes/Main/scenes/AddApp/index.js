@@ -17,6 +17,16 @@ import Layout from './components/Layout';
 import Form from './components/Form';
 
 class AddApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      urlInfoFound: false,
+    };
+  }
+  getUrlInfo = (url) => {
+    this.props.urlInfoRequest(encodeURIComponent(url))
+      .then(() => this.setState({ urlInfoFound: true }));
+  };
   handleSubmit = (body, { withCustomImg } = {}) => {
     const {
       addRequest,
@@ -39,16 +49,19 @@ class AddApp extends React.Component {
       add,
       addInit,
     } = this.props;
+    const { urlInfoFound } = this.state;
     return (
       <Layout>
         <Form
-          getUrlInfo={url => urlInfoRequest(encodeURIComponent(url))}
+          getUrlInfo={this.getUrlInfo}
           urlInfo={urlInfo}
+          urlInfoFound={urlInfoFound}
           add={add}
           toAppPage={this.toAppPage}
           init={() => {
-            urlInfoInit();
-            addInit();
+            this.setState({ urlInfoFound: false })
+            // urlInfoInit();
+            // addInit();
           }}
           submit={this.handleSubmit}
         />

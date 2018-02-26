@@ -4,58 +4,65 @@ import { bindActionCreators } from 'redux';
 import {
   withRouter,
 } from 'react-router-dom';
-import { push } from 'react-router-redux';
-import { loader } from 'data/loader/actions';
-import * as noticeDialogActions from 'data/noticeDialog/actions';
-import { request as setMyAppRequest } from '../../../../data/setMyApp/actions';
+import { on as message } from 'data/messageBar/actions';
+import { request as addMyAppRequest } from 'scenes/Main/data/addMyApp/actions';
+import { request as appRequest } from 'scenes/Main/data/app/actions';
+import { request as userRequest } from 'data/user/actions';
 import Layout from './components/Layout';
 import Form from './components/Form';
-import AppView from '../../../AppView';
-import * as myAppFromCookie from 'modules/myAppFromCookie';
+import AppView from 'scenes/Main/components/AppView';
+import Loader from 'components/Loader';
 
 class AppInfo extends React.Component {
   constructor(props) {
     super(props);
+    const { match, appRequest } = this.props;
+    const { id } = match.params;
+    if (id) {
+      appRequest(id);
+    }
   }
   isAlreadyIncluded = (app) => {
-    const { data } = this.props.auth;
-    let appList = [];
-    if (data) {
-      appList = data.appList;
-    } else {
-      appList = myAppFromCookie.getMyApp();
-    }
-    return appList.includes(app);
+    const { data } = this.props.user;
+    return data.appList.findIndex(o => o.id === app.id) > -1;
   };
   addToMyApp = (app) => {
-    this.props.setMyAppRequest({ app });
+    this.props.addMyAppRequest(app)
+      .then(() => {
+        this.props.userRequest();
+        this.props.message('앱이 추가되었습니다.');
+      });
   };
   render() {
-    const { match, setMyApp } = this.props;
-    const { id } = match.params;
-    const included = this.isAlreadyIncluded(id);
+    const { app } = this.props;
+    const included = app.data ? this.isAlreadyIncluded(app.data) : false;
     return (
       <Layout>
-        <AppView
-          id={id}
-        />
-        <Form
-          disabled={included}
-          add={() => this.addToMyApp(id)}
-        />
+        {
+          app.isFetching ?
+            <Loader /> :
+            <React.Fragment>
+              <AppView app={app.data}/>
+              <Form
+                disabled={included}
+                add={() => this.addToMyApp(app.data)}
+              />
+            </React.Fragment>
+        }
       </Layout>
     );
   }
 }
 const mapStateToProps = state => ({
-  auth: state.data.auth,
-  setMyApp: state.main.data.setMyApp,
+  user: state.data.user,
+  addMyApp: state.main.data.addMyApp,
+  app: state.main.data.app,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: path => push(path),
-  notice: noticeDialogActions.on,
-  loader,
-  setMyAppRequest,
+  message,
+  addMyAppRequest,
+  appRequest,
+  userRequest,
 }, dispatch);
 export default withRouter(connect(
   mapStateToProps,

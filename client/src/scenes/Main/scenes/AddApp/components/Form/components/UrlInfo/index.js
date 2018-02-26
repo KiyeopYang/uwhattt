@@ -26,6 +26,7 @@ class UrlInfo extends React.Component {
       inputs,
       handleInputChange,
       success,
+      defaultImg,
     } = this.props;
     const {
       favicon,
@@ -37,10 +38,11 @@ class UrlInfo extends React.Component {
       <React.Fragment>
         <div className={classes.imgForm}>
           <img
-            alt="favicon"
+            alt="faviconUrl"
             src={
               doUseUploadedImg && uploadedImg?
-                uploadedImg.url : favicon
+                uploadedImg.url : favicon.success ?
+                  favicon.url : defaultImg
             }
             width="64"
             height="64"
@@ -81,13 +83,14 @@ class UrlInfo extends React.Component {
           }
         </div>
         <TextField
-          id="Favicon URL"
+          id="favicon URL"
           label="Favicon URL"
           margin="normal"
           fullWidth
-          value={favicon}
-          onChange={handleInputChange('favicon')}
+          value={favicon.url}
+          onChange={handleInputChange('url', 'favicon')}
           disabled={doUseUploadedImg || success}
+          error={!favicon.success}
         />
         <TextField
           id="Title"

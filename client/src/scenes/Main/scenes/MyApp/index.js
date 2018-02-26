@@ -4,17 +4,16 @@ import { bindActionCreators } from 'redux';
 import {
   withRouter,
 } from 'react-router-dom';
-import { push } from 'react-router-redux';
 import { Motion, spring } from 'react-motion';
-
-import { loader } from 'data/loader/actions';
-import * as noticeDialogActions from 'data/noticeDialog/actions';
 import { request as appListRequest } from './data/appList/actions';
+import { request as setMyAppRequest } from '../../data/setMyApp/actions';
+import { request as removeMyAppRequest } from '../../data/removeMyApp/actions';
+import { request as userRequest } from 'data/user/actions';
 import Layout from './components/Layout';
 import App from './components/App';
-import * as myAppFromCookie from 'modules/myAppFromCookie';
+import RemoveApp from './components/RemoveApp';
 
-const springSetting1 = {stiffness: 20, damping: 5};
+const springSetting1 = {stiffness: 30, damping: 5};
 const springSetting2 = {stiffness: 120, damping: 17};
 function range(n) {
   const arr = [];
@@ -31,10 +30,11 @@ function reinsert(arr, from, to) {
 function clamp(n, min, max) {
   return Math.max(Math.min(n, max), min);
 }
-const TIME_TO_MOVE_APP = 1500;
+const TIME_TO_MOVE_APP = 1000;
 class MyApp extends React.Component {
   constructor(props) {
     super(props);
+    const { innerWidth } = window;
     this.state = {
       appList: [],
       mouseXY: [0, 0],
@@ -42,10 +42,11 @@ class MyApp extends React.Component {
       lastPress: null, // key of the last pressed component
       isPressed: null,
       initialAppList: [],
-      cols: 4,
+      cols: innerWidth >= 900 ? 8 : innerWidth >= 600 ? 6 : 4,
       appWidth: 1,
       appHeight: 100,
       layout: [],
+      removeOn: false,
     };
   }
   componentDidMount() {
@@ -54,25 +55,42 @@ class MyApp extends React.Component {
     window.addEventListener('mousemove', this.handleMouseMove);
     window.addEventListener('mouseup', this.handleMouseUp);
     window.addEventListener('resize', this.setUpLayoutByEvent);
-    this.getMyApp()
-      .then(this.setUpLayout)
-      .catch(console.error);
+    this.props.userRequest()
+      .then(() => {
+        this.setUpLayout(this.props.user.data.appList);
+      })
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.setUpLayoutByEvent);
+    window.removeEventListener('touchmove', this.handleTouchMove);
+    window.removeEventListener('touchend', this.handleMouseUp);
+    window.removeEventListener('mousemove', this.handleMouseMove);
+    window.removeEventListener('mouseup', this.handleMouseUp);
+    window.removeEventListener('resize', this.setUpLayoutByEvent);
   }
   setUpLayoutByEvent = () => {
-    this.setUpLayout(this.state.appList);
+    const { appList } = this.state;
+    let cols;
+    if (window.innerWidth >= 900) {
+      cols = 8;
+    } else if (window.innerWidth >= 600) {
+      cols = 6;
+    } else {
+      cols = 4;
+    }
+    this.setUpLayout(appList, cols);
   };
-  setUpLayout = (appList) => {
-    const appWidth = window.innerWidth / this.state.cols;
+  setUpLayout = (appList, cols = this.state.cols) => {
+    const appWidth = window.innerWidth / cols;
     this.setState({
       layout: range(appList.length).map(n => {
-        const row = Math.floor(n / this.state.cols);
-        const col = n % this.state.cols;
+        const row = Math.floor(n / cols);
+        const col = n % cols;
         return [appWidth * col, this.state.appHeight * row];
       }),
       appWidth,
+      appList: appList || this.state.appList,
+      cols,
     });
   };
   handleTouchStart = (key, pressLocation, e) => {
@@ -93,7 +111,15 @@ class MyApp extends React.Component {
         index = initialAppList.length - 1;
       }
       const newAppList = reinsert(initialAppList, initialAppList.findIndex(o => o.id === lastPress), index);
-      this.setState({mouseXY, appList: newAppList });
+      let removeOn = false;
+      if (window.innerHeight - pageY < 100) {
+        removeOn = true;
+      }
+      this.setState({
+        mouseXY,
+        appList: newAppList,
+        removeOn,
+      });
     }
   };
   handleMouseDown = (key, [pressX, pressY], {pageX, pageY}) => {
@@ -106,26 +132,29 @@ class MyApp extends React.Component {
     });
   };
   handleMouseUp = () => {
-    const { appList, lastPress, isPressed } = this.state;
-    if (isPressed && new Date().getTime() - isPressed.getTime() < TIME_TO_MOVE_APP) {
+    const { appList, lastPress, isPressed, removeOn } = this.state;
+    const { removeMyAppRequest, setMyAppRequest, userRequest } = this.props;
+    let newAppList = appList;
+    if (removeOn) {
+      const foundI = newAppList.findIndex(o => o.id === lastPress);
+      const app = newAppList[foundI];
+      newAppList.splice(foundI, 1);
+      removeMyAppRequest(app)
+        .then(() => userRequest());
+    } else if (isPressed && new Date().getTime() - isPressed.getTime() < TIME_TO_MOVE_APP) {
       const app = appList.find(o => o.id === lastPress);
       this.openWindow(app);
+    } else if (lastPress && isPressed){
+      setMyAppRequest(newAppList);
+      // 정렬은 핵심 프로세스가 아니기 때문에
+      // 즉시 유저 정보를 업데이트 할 필요는 없다.
+      // 게다가 페이지를 다시 접속할 때 유저 정보를 다시 불러온다.
     }
-    this.setState({isPressed: null, mouseCircleDelta: [0, 0]});
-  };
-  getMyApp = () => {
-    return new Promise((resolve, reject) => {
-      const { data } = this.props.auth;
-      let appList = data ? data.appList : null;
-      if (!appList) {
-        appList = myAppFromCookie.getMyApp();
-      }
-      this.props.appListRequest(appList)
-        .then((list) => {
-          this.setState({ appList: list });
-          resolve(list);
-        })
-        .catch(reject);
+    this.setState({
+      isPressed: null,
+      mouseCircleDelta: [0, 0],
+      removeOn: false,
+      appList: newAppList,
     });
   };
   openWindow = (app) => {
@@ -133,7 +162,7 @@ class MyApp extends React.Component {
     window.open(`${isHttps ? 'https://':'http://'}${domain}${path}`);
   };
   render() {
-    const { appList, layout, lastPress, isPressed, mouseXY } = this.state;
+    const { appList, layout, lastPress, isPressed, mouseXY, removeOn, cols } = this.state;
     return (
       <Layout>
         {
@@ -167,6 +196,7 @@ class MyApp extends React.Component {
                       WebkitTransform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                       transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`,
                       zIndex: o.id === lastPress ? 99 : visualPosition,
+                      width: `${100 / cols}%`,
                     }}
                     favicon={o.favicon}
                     title={o.title}
@@ -174,28 +204,36 @@ class MyApp extends React.Component {
                 }
               </Motion>
             );
-            // (
-            //   <App
-            //     key={o.id}
-            //     favicon={o.favicon}
-            //     title={o.title}
-            //   />
-            // )
           })
         }
+        <Motion
+          style={{
+            x: isPressed ?
+              spring(100, springSetting2) : spring(0, springSetting2),
+          }}
+        >
+          {({x}) =>
+            <RemoveApp
+              style={{
+                height: `${x}px`,
+              }}
+              on={removeOn}
+            />
+          }
+        </Motion>
       </Layout>
     );
   }
 }
 const mapStateToProps = state => ({
-  auth: state.data.auth,
+  user: state.data.user,
   appList: state.main.myApp.data.appList,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: path => push(path),
-  notice: noticeDialogActions.on,
-  loader,
   appListRequest,
+  setMyAppRequest,
+  removeMyAppRequest,
+  userRequest,
 }, dispatch);
 export default withRouter(connect(
   mapStateToProps,

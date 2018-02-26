@@ -13,6 +13,7 @@ const {
 } = makeFetchActions(
   ACTIONS,
 );
+// 앱의 아이디를 보내고 관련 정보를 받는다.
 const request = (ids) => {
   return async (dispatch) => {
     dispatch(waiting());

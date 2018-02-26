@@ -46,6 +46,9 @@ git clone https://github.com/KiyeopYang/nonohyes.git /opt/app
 cd /opt/app
 npm install
 
+# babel build
+npm run build
+
 # Create a nodeapp user. The application will run as this user.
 useradd -m -d /home/nodeapp nodeapp
 chown -R nodeapp:nodeapp /opt/app

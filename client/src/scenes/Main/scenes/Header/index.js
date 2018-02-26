@@ -60,7 +60,7 @@ class Header extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  auth: state.data.auth,
+  user: state.data.user,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
   push,

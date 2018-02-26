@@ -4,6 +4,7 @@ import { withStyles } from 'material-ui/styles';
 const styles = {
   layout: {
     width: '100%',
+    overflowX: 'hidden',
   },
 };
 class Layout extends React.Component {

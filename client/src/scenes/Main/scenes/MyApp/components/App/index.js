@@ -5,7 +5,6 @@ import Typography from 'material-ui/Typography';
 const styles = theme => ({
   app: {
     position: 'absolute',
-    width:'25%',
     height: '100px',
     overflow: 'hidden',
     textAlign: 'center',
@@ -22,7 +21,7 @@ const styles = theme => ({
   typo: {
     userDrag: 'none',
     userSelect: 'none',
-    pointerEvents: 'none',
+    pointerEvents: 'none'
   },
 });
 function App ({ classes, favicon, title, ...props }) {

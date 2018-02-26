@@ -3,9 +3,9 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
-import apiFetch from '../../../../../../modules/apiFetch';
+import apiFetch from 'modules/apiFetch';
 
-const ACTIONS = makeActionLabels('Main/AppView/data');
+const ACTIONS = makeActionLabels('Main/data/app');
 const {
   waiting,
   success,

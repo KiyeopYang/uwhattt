@@ -3,7 +3,7 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
-import apiFetch from '../../modules/apiFetch';
+import apiFetch from 'modules/apiFetch';
 
 const ACTIONS = makeActionLabels('data/signUp');
 const {

@@ -1,10 +1,10 @@
 /* global fetch */
-import { setAuth } from '../../modules/auth';
 import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
-import apiFetch from '../../modules/apiFetch';
+import apiFetch from 'modules/apiFetch';
+import { setId } from 'modules/userFromLocal';
 
 const ACTIONS = makeActionLabels('data/login');
 const {
@@ -25,7 +25,7 @@ const request = () => {
           headers: { 'Content-Type': 'application/json' },
         },
       });
-      setAuth(data.id);
+      setId(data.id);
       dispatch(success(data));
     } catch (error) {
       dispatch(failure(error));

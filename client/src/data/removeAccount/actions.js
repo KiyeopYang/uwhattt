@@ -3,7 +3,7 @@ import {
   makeActionLabels,
   makeFetchActions,
 } from 'modules/reduxHelper';
-import apiFetch from '../../modules/apiFetch';
+import apiFetch from 'modules/apiFetch';
 
 const ACTIONS = makeActionLabels('data/removeAccount');
 const {
@@ -22,7 +22,6 @@ const request = () => {
         options: {
           method: 'DELETE',
         },
-        autoAuth: true,
       });
       dispatch(success(data));
     } catch (error) {

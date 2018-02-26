@@ -1,4 +1,4 @@
-const resizeImage = (canvas) => {
+const fromCanvas = (canvas) => {
   return new Promise((resolve) => {
     const canvasToResize = document.createElement('canvas');
     const ctx = canvasToResize.getContext('2d');
@@ -7,9 +7,9 @@ const resizeImage = (canvas) => {
     ctx.drawImage(
       canvas, 0, 0, 200, 200
     );
-    canvasToResize.toBlob((data) => {
-      resolve(data);
-    });
+    canvasToResize.toBlob(resolve);
   });
 };
-export default resizeImage;
+export {
+  fromCanvas,
+}

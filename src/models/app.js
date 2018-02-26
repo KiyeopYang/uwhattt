@@ -12,6 +12,7 @@ const App = new Schema({
   },
   favicon: {
     type: String,
+    default: 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png',
   },
   title: {
     type: String,

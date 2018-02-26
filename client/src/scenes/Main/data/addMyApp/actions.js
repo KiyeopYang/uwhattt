@@ -6,10 +6,10 @@ import {
 import apiFetch from 'modules/apiFetch';
 import {
   getUserInfo,
-  setAppList,
+  addApp,
 } from 'modules/userFromLocal';
 
-const ACTIONS = makeActionLabels('Main/data/setMyApp');
+const ACTIONS = makeActionLabels('Main/data/addMyApp');
 const {
   waiting,
   success,
@@ -17,28 +17,28 @@ const {
 } = makeFetchActions(
   ACTIONS,
 );
-const request = (appList) => {
+const request = (app) => {
   return async (dispatch) => {
     dispatch(waiting());
     try {
       const { isLoggedIn, id } = getUserInfo();
-      setAppList(appList);
+      addApp(app);
       if (isLoggedIn) {
         await apiFetch({
-          path: `/account/${id}/setAppList`,
+          path: `/account/${id}/addApp`,
           options: {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${id}`,
             },
-            body: JSON.stringify(appList),
+            body: JSON.stringify(app),
           },
         });
       }
-      dispatch(success());
+      return dispatch(success());
     } catch (error) {
-      dispatch(failure(error));
+      return dispatch(failure(error));
     }
   }
 };

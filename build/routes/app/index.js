@@ -20,6 +20,10 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _request = require('request');
+
+var _request2 = _interopRequireDefault(_request);
+
 var _GCSFileManager = require('../../lib/GCSFileManager');
 
 var _logging = require('../../lib/logging');
@@ -151,46 +155,101 @@ router.get('/info/:url', function () {
   };
 }());
 // 추가
+var defaultImg = 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png';
 router.post('/', function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
     var PROCESS, _req$body, favicon, title, isHttps, domain, path, app;
 
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             PROCESS = '추가';
-            _context2.prev = 1;
+            _context3.prev = 1;
             _req$body = req.body, favicon = _req$body.favicon, title = _req$body.title, isHttps = _req$body.isHttps, domain = _req$body.domain, path = _req$body.path;
-            _context2.next = 5;
+
+            if (favicon) {
+              _context3.next = 10;
+              break;
+            }
+
+            _context3.next = 6;
             return new _models.App({
-              favicon: favicon,
+              favicon: defaultImg,
               title: title,
               isHttps: isHttps,
               domain: domain,
               path: path
             }).save();
 
-          case 5:
-            app = _context2.sent;
+          case 6:
+            app = _context3.sent;
 
             res.json((0, _dbConnector.fromMongo)(app.toObject()));
-            _context2.next = 13;
+            _context3.next = 11;
             break;
 
-          case 9:
-            _context2.prev = 9;
-            _context2.t0 = _context2['catch'](1);
+          case 10:
+            _request2.default.defaults({ encoding: null }).get(favicon, function () {
+              var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(err, r, body) {
+                var url, app;
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                  while (1) {
+                    switch (_context2.prev = _context2.next) {
+                      case 0:
+                        _context2.next = 2;
+                        return (0, _GCSFileManager.upload)({
+                          filename: '' + (0, _generateKey2.default)() + (_path2.default.extname(favicon) || '.jpg'),
+                          dir: 'favicon',
+                          content: body
+                        });
 
-            _logging2.default.error(_context2.t0);
-            res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
+                      case 2:
+                        url = _context2.sent;
+                        _context2.next = 5;
+                        return new _models.App({
+                          favicon: url,
+                          title: title,
+                          isHttps: isHttps,
+                          domain: domain,
+                          path: path
+                        }).save();
+
+                      case 5:
+                        app = _context2.sent;
+
+                        res.json((0, _dbConnector.fromMongo)(app.toObject()));
+
+                      case 7:
+                      case 'end':
+                        return _context2.stop();
+                    }
+                  }
+                }, _callee2, this);
+              }));
+
+              return function (_x5, _x6, _x7) {
+                return _ref3.apply(this, arguments);
+              };
+            }());
+
+          case 11:
+            _context3.next = 17;
+            break;
 
           case 13:
+            _context3.prev = 13;
+            _context3.t0 = _context3['catch'](1);
+
+            _logging2.default.error(_context3.t0);
+            res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
+
+          case 17:
           case 'end':
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2, undefined, [[1, 9]]);
+    }, _callee3, undefined, [[1, 13]]);
   }));
 
   return function (_x3, _x4) {
@@ -199,28 +258,27 @@ router.post('/', function () {
 }());
 // 추가(파일)
 router.post('/withCustomImg', multer.single('file'), function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
     var PROCESS, file, body, _JSON$parse, title, isHttps, domain, path, url, app;
 
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            console.log(req.get('Content-Type'));
             PROCESS = '추가';
-            _context3.prev = 2;
+            _context4.prev = 1;
             file = req.file, body = req.body;
             _JSON$parse = JSON.parse(body.data), title = _JSON$parse.title, isHttps = _JSON$parse.isHttps, domain = _JSON$parse.domain, path = _JSON$parse.path;
-            _context3.next = 7;
+            _context4.next = 6;
             return (0, _GCSFileManager.upload)({
               filename: '' + (0, _generateKey2.default)() + _path2.default.extname(file.originalname),
               dir: 'appImages',
               content: file.buffer
             });
 
-          case 7:
-            url = _context3.sent;
-            _context3.next = 10;
+          case 6:
+            url = _context4.sent;
+            _context4.next = 9;
             return new _models.App({
               favicon: url,
               title: title,
@@ -229,45 +287,51 @@ router.post('/withCustomImg', multer.single('file'), function () {
               path: path
             }).save();
 
-          case 10:
-            app = _context3.sent;
+          case 9:
+            app = _context4.sent;
 
             res.json((0, _dbConnector.fromMongo)(app.toObject()));
-            _context3.next = 18;
+            _context4.next = 17;
             break;
 
-          case 14:
-            _context3.prev = 14;
-            _context3.t0 = _context3['catch'](2);
+          case 13:
+            _context4.prev = 13;
+            _context4.t0 = _context4['catch'](1);
 
-            _logging2.default.error(_context3.t0);
+            _logging2.default.error(_context4.t0);
             res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
 
-          case 18:
+          case 17:
           case 'end':
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3, undefined, [[2, 14]]);
+    }, _callee4, undefined, [[1, 13]]);
   }));
 
-  return function (_x5, _x6) {
-    return _ref3.apply(this, arguments);
+  return function (_x8, _x9) {
+    return _ref4.apply(this, arguments);
   };
 }());
 // 수정
 router.post('/', function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
     var PROCESS, _req$body2, favicon, title, isHttps, domain, path, app;
 
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             PROCESS = '추가';
-            _context4.prev = 1;
+            _context6.prev = 1;
             _req$body2 = req.body, favicon = _req$body2.favicon, title = _req$body2.title, isHttps = _req$body2.isHttps, domain = _req$body2.domain, path = _req$body2.path;
-            _context4.next = 5;
+
+            if (favicon) {
+              _context6.next = 10;
+              break;
+            }
+
+            _context6.next = 6;
             return new _models.App({
               favicon: favicon,
               title: title,
@@ -276,55 +340,103 @@ router.post('/', function () {
               path: path
             }).save();
 
-          case 5:
-            app = _context4.sent;
+          case 6:
+            app = _context6.sent;
 
             res.json((0, _dbConnector.fromMongo)(app.toObject()));
-            _context4.next = 13;
+            _context6.next = 11;
             break;
 
-          case 9:
-            _context4.prev = 9;
-            _context4.t0 = _context4['catch'](1);
+          case 10:
+            _request2.default.defaults({ encoding: null }).get(favicon, function () {
+              var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(err, res, body) {
+                var url, app;
+                return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                  while (1) {
+                    switch (_context5.prev = _context5.next) {
+                      case 0:
+                        _context5.next = 2;
+                        return (0, _GCSFileManager.upload)({
+                          filename: '' + (0, _generateKey2.default)() + (_path2.default.extname(favicon) || '.jpg'),
+                          dir: 'favicon',
+                          content: body
+                        });
 
-            _logging2.default.error(_context4.t0);
-            res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
+                      case 2:
+                        url = _context5.sent;
+                        _context5.next = 5;
+                        return new _models.App({
+                          favicon: url,
+                          title: title,
+                          isHttps: isHttps,
+                          domain: domain,
+                          path: path
+                        }).save();
+
+                      case 5:
+                        app = _context5.sent;
+
+                        res.json((0, _dbConnector.fromMongo)(app.toObject()));
+
+                      case 7:
+                      case 'end':
+                        return _context5.stop();
+                    }
+                  }
+                }, _callee5, this);
+              }));
+
+              return function (_x12, _x13, _x14) {
+                return _ref6.apply(this, arguments);
+              };
+            }());
+
+          case 11:
+            _context6.next = 17;
+            break;
 
           case 13:
+            _context6.prev = 13;
+            _context6.t0 = _context6['catch'](1);
+
+            _logging2.default.error(_context6.t0);
+            res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
+
+          case 17:
           case 'end':
-            return _context4.stop();
+            return _context6.stop();
         }
       }
-    }, _callee4, undefined, [[1, 9]]);
+    }, _callee6, undefined, [[1, 13]]);
   }));
 
-  return function (_x7, _x8) {
-    return _ref4.apply(this, arguments);
+  return function (_x10, _x11) {
+    return _ref5.apply(this, arguments);
   };
 }());
 // 추가(파일)
 router.post('/withCustomImg', multer.single('file'), function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(req, res) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res) {
     var PROCESS, file, body, _JSON$parse2, title, isHttps, domain, path, url, app;
 
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             PROCESS = '추가';
-            _context5.prev = 1;
+            _context7.prev = 1;
             file = req.file, body = req.body;
             _JSON$parse2 = JSON.parse(body.data), title = _JSON$parse2.title, isHttps = _JSON$parse2.isHttps, domain = _JSON$parse2.domain, path = _JSON$parse2.path;
-            _context5.next = 6;
+            _context7.next = 6;
             return (0, _GCSFileManager.upload)({
               filename: '' + (0, _generateKey2.default)() + _path2.default.extname(file.originalname),
-              dir: 'appImages',
+              dir: 'favicon',
               content: file.buffer
             });
 
           case 6:
-            url = _context5.sent;
-            _context5.next = 9;
+            url = _context7.sent;
+            _context7.next = 9;
             return new _models.App({
               favicon: url,
               title: title,
@@ -334,138 +446,53 @@ router.post('/withCustomImg', multer.single('file'), function () {
             }).save();
 
           case 9:
-            app = _context5.sent;
+            app = _context7.sent;
 
             res.json((0, _dbConnector.fromMongo)(app.toObject()));
-            _context5.next = 17;
+            _context7.next = 17;
             break;
 
           case 13:
-            _context5.prev = 13;
-            _context5.t0 = _context5['catch'](1);
+            _context7.prev = 13;
+            _context7.t0 = _context7['catch'](1);
 
-            _logging2.default.error(_context5.t0);
+            _logging2.default.error(_context7.t0);
             res.status(500).json({ message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC' });
 
           case 17:
           case 'end':
-            return _context5.stop();
-        }
-      }
-    }, _callee5, undefined, [[1, 13]]);
-  }));
-
-  return function (_x9, _x10) {
-    return _ref5.apply(this, arguments);
-  };
-}());
-router.get('/:id', function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(req, res) {
-    var PROCESS, id, app;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
-      while (1) {
-        switch (_context6.prev = _context6.next) {
-          case 0:
-            PROCESS = '조회';
-            _context6.prev = 1;
-            id = req.params.id;
-            _context6.next = 5;
-            return _models.App.findOne({ _id: id }).lean().exec();
-
-          case 5:
-            app = _context6.sent;
-
-            res.json((0, _dbConnector.fromMongo)(app));
-            _context6.next = 13;
-            break;
-
-          case 9:
-            _context6.prev = 9;
-            _context6.t0 = _context6['catch'](1);
-
-            _logging2.default.error(_context6.t0);
-            res.status(400).json({
-              message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
-            });
-
-          case 13:
-          case 'end':
-            return _context6.stop();
-        }
-      }
-    }, _callee6, undefined, [[1, 9]]);
-  }));
-
-  return function (_x11, _x12) {
-    return _ref6.apply(this, arguments);
-  };
-}());
-router.post('/getAppList', function () {
-  var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(req, res) {
-    var PROCESS, body, appList;
-    return regeneratorRuntime.wrap(function _callee7$(_context7) {
-      while (1) {
-        switch (_context7.prev = _context7.next) {
-          case 0:
-            PROCESS = '조회';
-            _context7.prev = 1;
-            body = req.body;
-            _context7.next = 5;
-            return _models.App.find({ _id: { $in: body } }).lean().exec();
-
-          case 5:
-            appList = _context7.sent;
-
-            res.json((0, _dbConnector.fromMongo)(body.map(function (id) {
-              return appList.find(function (o) {
-                return String(o._id) === id;
-              });
-            })));
-            _context7.next = 13;
-            break;
-
-          case 9:
-            _context7.prev = 9;
-            _context7.t0 = _context7['catch'](1);
-
-            _logging2.default.error(_context7.t0);
-            res.status(400).json({
-              message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
-            });
-
-          case 13:
-          case 'end':
             return _context7.stop();
         }
       }
-    }, _callee7, undefined, [[1, 9]]);
+    }, _callee7, undefined, [[1, 13]]);
   }));
 
-  return function (_x13, _x14) {
+  return function (_x15, _x16) {
     return _ref7.apply(this, arguments);
   };
 }());
-router.get('/', function () {
+router.get('/:id', function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(req, res) {
-    var PROCESS, appList;
+    var PROCESS, id, app;
     return regeneratorRuntime.wrap(function _callee8$(_context8) {
       while (1) {
         switch (_context8.prev = _context8.next) {
           case 0:
             PROCESS = '조회';
             _context8.prev = 1;
-            _context8.next = 4;
-            return _models.App.find({}).lean().exec();
+            id = req.params.id;
+            _context8.next = 5;
+            return _models.App.findOne({ _id: id }).lean().exec();
 
-          case 4:
-            appList = _context8.sent;
+          case 5:
+            app = _context8.sent;
 
-            res.json((0, _dbConnector.fromMongo)(appList));
-            _context8.next = 12;
+            res.json((0, _dbConnector.fromMongo)(app));
+            _context8.next = 13;
             break;
 
-          case 8:
-            _context8.prev = 8;
+          case 9:
+            _context8.prev = 9;
             _context8.t0 = _context8['catch'](1);
 
             _logging2.default.error(_context8.t0);
@@ -473,57 +500,142 @@ router.get('/', function () {
               message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
             });
 
-          case 12:
+          case 13:
           case 'end':
             return _context8.stop();
         }
       }
-    }, _callee8, undefined, [[1, 8]]);
+    }, _callee8, undefined, [[1, 9]]);
   }));
 
-  return function (_x15, _x16) {
+  return function (_x17, _x18) {
     return _ref8.apply(this, arguments);
   };
 }());
-
-// 삭제
-router.delete('/:id', function () {
+router.post('/getAppList', function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(req, res) {
-    var PROCESS, id;
+    var PROCESS, body, appList;
     return regeneratorRuntime.wrap(function _callee9$(_context9) {
       while (1) {
         switch (_context9.prev = _context9.next) {
           case 0:
-            PROCESS = '삭제';
-            id = req.params.id;
-            _context9.prev = 2;
+            PROCESS = '조회';
+            _context9.prev = 1;
+            body = req.body;
             _context9.next = 5;
-            return _models.App.deleteOne({ _id: id });
+            return _models.App.find({ _id: { $in: body } }).lean().exec();
 
           case 5:
-            res.json({ success: true });
-            _context9.next = 12;
+            appList = _context9.sent;
+
+            res.json((0, _dbConnector.fromMongo)(body.map(function (id) {
+              return appList.find(function (o) {
+                return String(o._id) === id;
+              });
+            })));
+            _context9.next = 13;
             break;
 
-          case 8:
-            _context9.prev = 8;
-            _context9.t0 = _context9['catch'](2);
+          case 9:
+            _context9.prev = 9;
+            _context9.t0 = _context9['catch'](1);
 
             _logging2.default.error(_context9.t0);
             res.status(400).json({
               message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
             });
 
-          case 12:
+          case 13:
           case 'end':
             return _context9.stop();
         }
       }
-    }, _callee9, undefined, [[2, 8]]);
+    }, _callee9, undefined, [[1, 9]]);
   }));
 
-  return function (_x17, _x18) {
+  return function (_x19, _x20) {
     return _ref9.apply(this, arguments);
+  };
+}());
+router.get('/', function () {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(req, res) {
+    var PROCESS, appList;
+    return regeneratorRuntime.wrap(function _callee10$(_context10) {
+      while (1) {
+        switch (_context10.prev = _context10.next) {
+          case 0:
+            PROCESS = '조회';
+            _context10.prev = 1;
+            _context10.next = 4;
+            return _models.App.find({}).lean().exec();
+
+          case 4:
+            appList = _context10.sent;
+
+            res.json((0, _dbConnector.fromMongo)(appList));
+            _context10.next = 12;
+            break;
+
+          case 8:
+            _context10.prev = 8;
+            _context10.t0 = _context10['catch'](1);
+
+            _logging2.default.error(_context10.t0);
+            res.status(400).json({
+              message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
+            });
+
+          case 12:
+          case 'end':
+            return _context10.stop();
+        }
+      }
+    }, _callee10, undefined, [[1, 8]]);
+  }));
+
+  return function (_x21, _x22) {
+    return _ref10.apply(this, arguments);
+  };
+}());
+
+// 삭제
+router.delete('/:id', function () {
+  var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(req, res) {
+    var PROCESS, id;
+    return regeneratorRuntime.wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            PROCESS = '삭제';
+            id = req.params.id;
+            _context11.prev = 2;
+            _context11.next = 5;
+            return _models.App.deleteOne({ _id: id });
+
+          case 5:
+            res.json({ success: true });
+            _context11.next = 12;
+            break;
+
+          case 8:
+            _context11.prev = 8;
+            _context11.t0 = _context11['catch'](2);
+
+            _logging2.default.error(_context11.t0);
+            res.status(400).json({
+              message: NAME + ' ' + PROCESS + ' \uC5D0\uB7EC'
+            });
+
+          case 12:
+          case 'end':
+            return _context11.stop();
+        }
+      }
+    }, _callee11, undefined, [[2, 8]]);
+  }));
+
+  return function (_x23, _x24) {
+    return _ref11.apply(this, arguments);
   };
 }());
 exports.default = router;

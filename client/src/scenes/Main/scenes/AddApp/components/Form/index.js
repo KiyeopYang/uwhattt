@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import LoadingButton from 'components/LoadingButton';
-import resizeImage from 'modules/resizeImage';
+import * as resizeImage from 'modules/resizeImage';
 import UrlForm from './components/UrlForm';
 import UrlInfo from './components/UrlInfo';
 
@@ -15,14 +15,17 @@ const styles = theme => ({
     textAlign: 'right',
   },
 });
+const defaultImg = 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png';
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    const { data } = this.props.urlInfo;
     this.state = {
-      url: data ? data.url : '',
-      favicon: data ? data.favicon : '',
-      title: data ? data.title : '',
+      url: '',
+      favicon: {
+        url: '',
+        success: false,
+      },
+      title: '',
       doUseUploadedImg: false,
       uploadedImg: null,
     };
@@ -35,9 +38,39 @@ class Form extends React.Component {
     ) {
       this.setState({
         url: data.url,
-        favicon: data.favicon,
+        favicon: {
+          ...this.state.favicon,
+          url: data.favicon,
+        },
         title: data.title,
       });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.favicon.url !== prevState.favicon.url) {
+      const img = new Image();
+      img.onload = () => {
+        if (img.src === this.state.favicon.url) {
+          // 비동기 실패 로드 차단
+          this.setState({
+            favicon: {
+              ...this.state.favicon,
+              success: true,
+            },
+          });
+        }
+      };
+      img.onerror = () => {
+        if (img.src === this.state.favicon.url) {
+          this.setState({
+            favicon: {
+              ...this.state.favicon,
+              success: false,
+            },
+          });
+        }
+      };
+      img.src = this.state.favicon.url;
     }
   }
   toAppPage = () => {
@@ -46,13 +79,6 @@ class Form extends React.Component {
   };
   handleCancel = () => {
     this.props.init();
-    this.setState({
-      url: '',
-      favicon: '',
-      title: '',
-      doUseUploadedImg: false,
-      uploadedImg: null,
-    });
   };
   handleSubmit = async () => {
     const {
@@ -67,7 +93,7 @@ class Form extends React.Component {
       uploadedImg,
     } = this.state;
     if (doUseUploadedImg && uploadedImg) {
-      const file = await resizeImage(uploadedImg.canvas);
+      const file = await resizeImage.fromCanvas(uploadedImg.canvas);
       const formData = new FormData();
       formData.append(
         'file',
@@ -92,7 +118,7 @@ class Form extends React.Component {
         domain,
         path,
         title,
-        favicon,
+        favicon: favicon.success ? favicon.url : null
       });
     }
   };
@@ -100,6 +126,15 @@ class Form extends React.Component {
     if (!mode) {
       return e => {
         this.setState({ [prop]: e.target.value });
+      };
+    } else if (mode ==='favicon') {
+      return e => {
+        this.setState({
+          favicon: {
+            ...this.state.favicon,
+            [prop]: e.target.value,
+          },
+        });
       };
     } else if (mode === 'switch') {
       return e => {
@@ -137,6 +172,7 @@ class Form extends React.Component {
     const {
       classes,
       urlInfo,
+      urlInfoFound,
       getUrlInfo,
       add,
     } = this.props;
@@ -148,7 +184,7 @@ class Form extends React.Component {
       uploadedImg,
     } = this.state;
     const urlInfoSuccess =
-      urlInfo.data && !urlInfo.isFetching && !urlInfo.error;
+      urlInfoFound && urlInfo.data && !urlInfo.isFetching && !urlInfo.error;
     const addSuccess =
       add.data && !add.isFetching && !add.error;
     return (
@@ -174,6 +210,7 @@ class Form extends React.Component {
                 }}
                 success={addSuccess}
                 handleInputChange={this.handleInputChange}
+                defaultImg={defaultImg}
               />
               <div className={classes.buttons}>
                 <LoadingButton

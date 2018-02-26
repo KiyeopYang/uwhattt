@@ -13,7 +13,13 @@ const off = () => {
     open: false,
   };
 };
-const on = ({ message }) => {
+const on = (input) => {
+  let message;
+  if (typeof input === 'string') {
+    message = input;
+  } else {
+    message = input.message;
+  }
   return {
     type: ACTIONS.ON,
     open: true,

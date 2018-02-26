@@ -9,7 +9,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var getInfo = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url) {
-    var exists, _ref2, _ref3, favicon, title;
+    var _ref2, _ref3, favicon, title;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -19,13 +19,10 @@ var getInfo = function () {
             return urlExists(url);
 
           case 2:
-            exists = _context.sent;
-
-            console.log(exists);
-            _context.next = 6;
+            _context.next = 4;
             return _bluebird2.default.all([getFavicon(url), getTitle(url)]);
 
-          case 6:
+          case 4:
             _ref2 = _context.sent;
             _ref3 = _slicedToArray(_ref2, 2);
             favicon = _ref3[0];
@@ -35,7 +32,7 @@ var getInfo = function () {
               title: title
             });
 
-          case 11:
+          case 9:
           case 'end':
             return _context.stop();
         }
@@ -100,9 +97,7 @@ function getTitle(url) {
 }
 function urlExists(url) {
   return new _bluebird2.default(function (resolve, reject) {
-    console.log(url);
     (0, _request2.default)(url, function (e, r) {
-      console.error(e);
       if (e) reject(e);else resolve(r.statusCode !== 404);
     });
   });

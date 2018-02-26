@@ -2,6 +2,7 @@ import express from 'express';
 import UrlParser from 'url-parse';
 import Multer from 'multer';
 import pathLib from 'path';
+import request from 'request';
 import {
   getUrl,
   upload,
@@ -85,13 +86,34 @@ router.post(
         path,
       } = req.body;
       let app = await new App({
-        favicon,
         title,
         isHttps,
         domain,
         path,
       }).save();
-      res.json(fromMongo(app.toObject()));
+      app = app.toObject();
+      if (!favicon) {
+        request.defaults({ encoding: null }).get(
+          favicon, async function (err, r, body) {
+            try {
+              const url = await upload({
+                filename: `${keyGen()}${pathLib.extname(favicon) || '.jpg'}`,
+                dir: 'favicon',
+                content: body,
+              });
+              await App.updateOne({
+                $set: { favicon: url },
+              }).save();
+              app.favicon = url;
+              res.json(fromMongo(app));
+            } catch (error) {
+              logging.error(error);
+              res.status(500).json({ message: `에러: 이미지가 정상적으로 업로드 되지 않았습니다.` });
+            }
+          });
+      } else {
+        res.json(fromMongo(app));
+      }
     } catch (error) {
       logging.error(error);
       res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
@@ -103,7 +125,6 @@ router.post(
   '/withCustomImg',
   multer.single('file'),
   async (req, res) => {
-    console.log(req.get('Content-Type'));
     const PROCESS = '추가';
     try {
       const { file, body } = req;
@@ -145,47 +166,33 @@ router.post(
         domain,
         path,
       } = req.body;
-      let app = await new App({
-        favicon,
-        title,
-        isHttps,
-        domain,
-        path,
-      }).save();
-      res.json(fromMongo(app.toObject()));
-    } catch (error) {
-      logging.error(error);
-      res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
-    }
-  },
-);
-// 추가(파일)
-router.post(
-  '/withCustomImg',
-  multer.single('file'),
-  async (req, res) => {
-    const PROCESS = '추가';
-    try {
-      const { file, body } = req;
-      const {
-        title,
-        isHttps,
-        domain,
-        path,
-      } = JSON.parse(body.data);
-      const url = await upload({
-        filename: `${keyGen()}${pathLib.extname(file.originalname)}`,
-        dir: 'appImages',
-        content: file.buffer,
-      });
-      let app = await new App({
-        favicon: url,
-        title,
-        isHttps,
-        domain,
-        path,
-      }).save();
-      res.json(fromMongo(app.toObject()));
+      if (!favicon) {
+        let app = await new App({
+          favicon,
+          title,
+          isHttps,
+          domain,
+          path,
+        }).save();
+        res.json(fromMongo(app.toObject()));
+      } else {
+        request.defaults({ encoding: null }).get(
+          favicon, async function (err, res, body) {
+            const url = await upload({
+              filename: `${keyGen()}${pathLib.extname(favicon) || '.jpg'}`,
+              dir: 'favicon',
+              content: body,
+            });
+            let app = await new App({
+              favicon: url,
+              title,
+              isHttps,
+              domain,
+              path,
+            }).save();
+            res.json(fromMongo(app.toObject()));
+          });
+      }
     } catch (error) {
       logging.error(error);
       res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });

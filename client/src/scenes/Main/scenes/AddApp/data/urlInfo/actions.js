@@ -22,9 +22,9 @@ const request = (id) => {
       const data = await apiFetch({
         path: `/app/info/${id}`,
       });
-      dispatch(success(data));
+      return dispatch(success(data));
     } catch (error) {
-      dispatch(failure(error));
+      return dispatch(failure(error));
     }
   }
 };

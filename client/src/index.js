@@ -23,16 +23,7 @@ Until then, be sure to inject this plugin at the start of your app.
 https://www.npmjs.com/package/material-ui
  */
 injectTapEventPlugin();
-const theme = createMuiTheme({
-  palette: {
-    secondary: {
-      light: '#ffff6b',
-      main: '#fdd835',
-      dark: '#c6a700',
-      contrastText: '#000',
-    },
-  },
-});
+const theme = createMuiTheme({});
 const renders = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
