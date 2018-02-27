@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/nonohyes-a46366a5bc92.json" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/lib/appInfo/index.js" afterPath="$PROJECT_DIR$/build/lib/appInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/build/models/app.js" afterPath="$PROJECT_DIR$/build/models/app.js" />
-      <change beforePath="$PROJECT_DIR$/build/routes/app/index.js" afterPath="$PROJECT_DIR$/build/routes/app/index.js" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" afterPath="$PROJECT_DIR$/client/public/favicon.png" />
       <change beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" afterPath="$PROJECT_DIR$/client/public/manifest.json" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/data/addMyApp/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/data/addMyApp/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlInfo/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/components/UrlInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/components/Form/index.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/add/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/add/actions.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/lib/appInfo/index.js" afterPath="$PROJECT_DIR$/src/lib/appInfo/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/app/index.js" afterPath="$PROJECT_DIR$/src/routes/app/index.js" />
+      <change beforePath="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" afterPath="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,11 +18,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5474894">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="150" column="39" lean-forward="false" selection-start-line="150" selection-start-column="39" selection-end-line="150" selection-end-column="39" />
+                <state relative-caret-position="300">
+                  <caret line="141" column="12" lean-forward="false" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
                   </folding>
@@ -43,11 +30,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/lib/GCSFileManager/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+                <state relative-caret-position="140">
+                  <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -155,7 +142,7 @@
                 <entry file="file://$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="380">
-                      <caret line="181" column="14" lean-forward="false" selection-start-line="181" selection-start-column="14" selection-end-line="181" selection-end-column="14" />
+                      <caret line="196" column="14" lean-forward="false" selection-start-line="196" selection-start-column="14" selection-end-line="196" selection-end-column="14" />
                       <folding />
                     </state>
                   </provider>
@@ -213,8 +200,8 @@
               <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/models/app.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="220">
-                      <caret line="11" column="4" lean-forward="false" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+                    <state relative-caret-position="200">
+                      <caret line="10" column="7" lean-forward="false" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
                       <folding />
                     </state>
                   </provider>
@@ -351,7 +338,6 @@
         <option value="$PROJECT_DIR$/src/routes/app/index-test.js" />
         <option value="$PROJECT_DIR$/src/config.js" />
         <option value="$PROJECT_DIR$/src/lib/logging.js" />
-        <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
         <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.test.js" />
         <option value="$PROJECT_DIR$/src/lib/sendEmail/config.json" />
         <option value="$PROJECT_DIR$/src/auth.js" />
@@ -380,6 +366,7 @@
         <option value="$PROJECT_DIR$/src/routes/account/index.js" />
         <option value="$PROJECT_DIR$/src/lib/appInfo/index.js" />
         <option value="$PROJECT_DIR$/src/routes/app/index.js" />
+        <option value="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
       </list>
     </option>
   </component>
@@ -398,9 +385,9 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="351" />
-    <option name="width" value="1942" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="618" />
+    <option name="width" value="1305" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -622,19 +609,19 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="27719000" />
+      <workItem from="1519463586255" duration="27887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70467000" />
+    <option name="totallyTimeSpent" value="70635000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="618" y="0" width="1305" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1390625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20745921" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -901,7 +888,7 @@
     <entry file="file://$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="181" column="14" lean-forward="false" selection-start-line="181" selection-start-column="14" selection-end-line="181" selection-end-column="14" />
+          <caret line="196" column="14" lean-forward="false" selection-start-line="196" selection-start-column="14" selection-end-line="196" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1041,14 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/account/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1067,21 +1046,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/GCSFileManager/index.js">
+    <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="40" column="5" lean-forward="false" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+        <state relative-caret-position="300">
+          <caret line="141" column="12" lean-forward="false" selection-start-line="141" selection-start-column="12" selection-end-line="141" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/app/index.js">
+    <entry file="file://$PROJECT_DIR$/src/lib/GCSFileManager/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="150" column="39" lean-forward="false" selection-start-line="150" selection-start-column="39" selection-end-line="150" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

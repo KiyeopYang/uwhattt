@@ -9,6 +9,7 @@ const CLOUD_BUCKET = config.get('CLOUD_BUCKET');
 
 const storage = Storage({
   projectId: config.get('GCLOUD_PROJECT'),
+  keyFilename: 'nonohyes-a46366a5bc92.json',
 });
 const bucket = storage.bucket(CLOUD_BUCKET);
 

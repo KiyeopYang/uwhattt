@@ -88,8 +88,6 @@ class AddApp extends React.Component {
       doUseUploadedImg,
       uploadedImg,
     } = this.state;
-    console.log(favicon);
-
     const formData = new FormData();
     if (favicon.success || uploadedImg.success) {
       const imgSource = doUseUploadedImg ? uploadedImg : favicon;
@@ -100,7 +98,6 @@ class AddApp extends React.Component {
         imgSource.name,
       );
     }
-    console.log(domain);
     formData.append(
       'data',
       JSON.stringify({
@@ -119,10 +116,28 @@ class AddApp extends React.Component {
       })
   };
   toAppPage = () => {
-    console.log('to App Page');
+    this.props.push('/');
   };
   handleCancel = () => {
-    // this.props.init();
+    this.setState({
+      urlInfoFound: false,
+      addSuccess: false,
+      url: '',
+      title: '',
+      favicon: {
+        canvas: null,
+        name: '',
+        url: '',
+        success: false,
+      },
+      doUseUploadedImg: false,
+      uploadedImg: {
+        canvas: null,
+        name: '',
+        url: '',
+        success: false,
+      },
+    });
   };
   handleInputChange = (prop, mode) => {
     if (!mode) {
