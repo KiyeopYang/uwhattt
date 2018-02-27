@@ -36,9 +36,11 @@ const request = (app) => {
           },
         });
       }
-      return dispatch(success());
+      dispatch(success());
+      return true;
     } catch (error) {
-      return dispatch(failure(error));
+      dispatch(failure(error));
+      throw error;
     }
   }
 };

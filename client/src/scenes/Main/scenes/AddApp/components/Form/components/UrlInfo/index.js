@@ -25,14 +25,12 @@ class UrlInfo extends React.Component {
       classes,
       inputs,
       handleInputChange,
-      success,
-      defaultImg,
+      disabled,
+      imgUrl,
     } = this.props;
     const {
-      favicon,
       title,
       doUseUploadedImg,
-      uploadedImg,
     } = inputs;
     return (
       <React.Fragment>
@@ -40,9 +38,7 @@ class UrlInfo extends React.Component {
           <img
             alt="faviconUrl"
             src={
-              doUseUploadedImg && uploadedImg?
-                uploadedImg.url : favicon.success ?
-                  favicon.url : defaultImg
+              imgUrl
             }
             width="64"
             height="64"
@@ -53,7 +49,7 @@ class UrlInfo extends React.Component {
                 checked={doUseUploadedImg}
                 onChange={handleInputChange('doUseUploadedImg', 'switch')}
                 color="primary"
-                disabled={success}
+                disabled={disabled}
               />
             }
             label="Upload an Image"
@@ -67,14 +63,14 @@ class UrlInfo extends React.Component {
                   id="uploadAnImage"
                   type="file"
                   onChange={handleInputChange(null, 'img')}
-                  disabled={success}
+                  disabled={disabled}
                 />
                 <label htmlFor="uploadAnImage">
                   <Button
                     variant="raised"
                     component="span"
                     color="primary"
-                    disabled={success}
+                    disabled={disabled}
                   >
                     Upload
                   </Button>
@@ -83,23 +79,13 @@ class UrlInfo extends React.Component {
           }
         </div>
         <TextField
-          id="favicon URL"
-          label="Favicon URL"
-          margin="normal"
-          fullWidth
-          value={favicon.url}
-          onChange={handleInputChange('url', 'favicon')}
-          disabled={doUseUploadedImg || success}
-          error={!favicon.success}
-        />
-        <TextField
           id="Title"
           label="Title"
           margin="normal"
           fullWidth
           value={title}
           onChange={handleInputChange('title')}
-          disabled={success}
+          disabled={disabled}
         />
       </React.Fragment>
     );

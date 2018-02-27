@@ -15,55 +15,216 @@ import {
 } from './data/add/actions';
 import Layout from './components/Layout';
 import Form from './components/Form';
+import * as resizeImage from 'modules/resizeImage';
 
+const defaultImg = 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png';
 class AddApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       urlInfoFound: false,
+      addSuccess: false,
+      url: '',
+      title: '',
+      favicon: {
+        canvas: null,
+        name: '',
+        url: '',
+        success: false,
+      },
+      doUseUploadedImg: false,
+      uploadedImg: {
+        canvas: null,
+        name: '',
+        url: '',
+        success: false,
+      },
     };
   }
   getUrlInfo = (url) => {
     this.props.urlInfoRequest(encodeURIComponent(url))
-      .then(() => this.setState({ urlInfoFound: true }));
+      .then(() => {
+        const { data } = this.props.urlInfo;
+        const img = new Image();
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          this.setState({
+            favicon: {
+              name: data,
+              canvas,
+              success: true,
+              url: canvas.toDataURL(),
+            }
+          });
+        };
+        img.onerror = () => this.setState({
+          favicon: {
+            ...this.state.favicon,
+            success: false,
+          },
+        });
+        img.src = window.URL.createObjectURL(
+          new Blob([new Uint8Array(data.favicon.buffer.data)], {type: 'image/jpeg'}));
+        this.setState({
+          url: data.url,
+          title: data.title,
+          urlInfoFound: true,
+        });
+      });
   };
-  handleSubmit = (body, { withCustomImg } = {}) => {
+  handleSubmit = async () => {
     const {
-      addRequest,
-      addWithCustomImgRequest,
-    } = this.props;
-    if (withCustomImg) {
-      addWithCustomImgRequest(body);
-    } else {
-      addRequest(body);
+      isHttps,
+      domain,
+      path,
+    } = this.props.urlInfo.data;
+    const {
+      title,
+      favicon,
+      doUseUploadedImg,
+      uploadedImg,
+    } = this.state;
+    console.log(favicon);
+
+    const formData = new FormData();
+    if (favicon.success || uploadedImg.success) {
+      const imgSource = doUseUploadedImg ? uploadedImg : favicon;
+      const file = await resizeImage.fromCanvas(imgSource.canvas);
+      formData.append(
+        'file',
+        file,
+        imgSource.name,
+      );
     }
+    console.log(domain);
+    formData.append(
+      'data',
+      JSON.stringify({
+        isHttps,
+        domain,
+        path,
+        title,
+      }),
+    );
+    this.props.addWithCustomImgRequest(formData)
+      .then(() => {
+        this.setState({ addSuccess: true });
+      })
+      .catch(() => {
+        this.setState({ addSuccess: false })
+      })
   };
   toAppPage = () => {
     console.log('to App Page');
   };
+  handleCancel = () => {
+    // this.props.init();
+  };
+  handleInputChange = (prop, mode) => {
+    if (!mode) {
+      return e => {
+        this.setState({ [prop]: e.target.value });
+      };
+    } else if (mode ==='favicon') {
+      return e => {
+        this.setState({
+          favicon: {
+            ...this.state.favicon,
+            [prop]: e.target.value,
+          },
+        });
+      };
+    } else if (mode === 'switch') {
+      return e => {
+        this.setState({ [prop]: e.target.checked });
+      };
+    } else if (mode === 'img') {
+      return e => {
+        const input = e.target;
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = re => {
+            const img = new Image();
+            img.onload = () => {
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              canvas.width = img.width;
+              canvas.height = img.height;
+              ctx.drawImage(img, 0, 0, img.width, img.height);
+              this.setState({
+                uploadedImg: {
+                  canvas,
+                  name: input.files[0].name,
+                  url: canvas.toDataURL(),
+                  success: true,
+                },
+              });
+            };
+            img.onerror = () => this.setState({
+              uploadedImg: {
+                ...this.state.uploadedImg,
+                success: false,
+              },
+            });
+            img.src = re.target.result;
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    }
+  };
   render() {
     const {
       urlInfo,
-      urlInfoRequest,
-      urlInfoInit,
       add,
-      addInit,
     } = this.props;
-    const { urlInfoFound } = this.state;
+    const {
+      urlInfoFound,
+      url,
+      favicon,
+      title,
+      doUseUploadedImg,
+      uploadedImg,
+      addSuccess,
+    } = this.state;
     return (
       <Layout>
         <Form
-          getUrlInfo={this.getUrlInfo}
-          urlInfo={urlInfo}
-          urlInfoFound={urlInfoFound}
-          add={add}
-          toAppPage={this.toAppPage}
-          init={() => {
-            this.setState({ urlInfoFound: false })
-            urlInfoInit();
-            addInit();
+          inputs={{
+            url,
+            title,
+            doUseUploadedImg,
           }}
-          submit={this.handleSubmit}
+          imgUrl={
+            doUseUploadedImg && uploadedImg.success?
+              uploadedImg.url : favicon.success ?
+              favicon.url : defaultImg
+          }
+          urlInfoForm={{
+            loading: urlInfo.isFetching,
+            success: urlInfoFound,
+            onSubmit: this.getUrlInfo,
+          }}
+          formFetching={add.isFetching}
+          formSuccess={addSuccess}
+          handleBtnA={
+            addSuccess ? {
+              onClick: this.toAppPage,
+              text: 'To App Page',
+            } : {
+              onClick: this.handleSubmit,
+              text: 'Submit',
+            }
+          }
+          handleBtnB={{
+              onClick: this.handleCancel,
+              text: addSuccess ? 'Add Another' : 'Cancel',
+          }}
+          handleInputChange={this.handleInputChange}
         />
       </Layout>
     );

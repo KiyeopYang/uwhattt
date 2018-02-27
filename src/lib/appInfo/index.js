@@ -1,8 +1,6 @@
 import faviconCb from 'favicon';
 import getTitleCb from 'get-title-at-url';
 import Promise from 'bluebird';
-import http from 'http';
-import URL from 'url';
 import request from 'request';
 
 function getFavicon(url) {

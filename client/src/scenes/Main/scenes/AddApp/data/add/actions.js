@@ -27,9 +27,9 @@ const request = (body) => {
           body: JSON.stringify(body),
         },
       });
-      dispatch(success(data));
+      return dispatch(success(data));
     } catch (error) {
-      dispatch(failure(error));
+      return dispatch(failure(error));
     }
   }
 };
@@ -38,15 +38,17 @@ const requestWithCustomImg = (body) => {
     dispatch(waiting());
     try {
       const data = await apiFetch({
-        path: '/app/withCustomImg',
+        path: '/app',
         options: {
           method: 'POST',
           body,
         },
       });
       dispatch(success(data));
+      return data;
     } catch (error) {
       dispatch(failure(error));
+      throw error;
     }
   }
 };

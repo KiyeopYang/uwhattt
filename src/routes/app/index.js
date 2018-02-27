@@ -4,7 +4,6 @@ import Multer from 'multer';
 import pathLib from 'path';
 import request from 'request';
 import {
-  getUrl,
   upload,
 } from '../../lib/GCSFileManager';
 import logging from '../../lib/logging';
@@ -18,7 +17,6 @@ import {
 import {
   App,
 } from '../../models';
-import auth from '../../auth';
 
 const multer = Multer({
   storage: Multer.MemoryStorage,
@@ -58,14 +56,21 @@ router.get(
       }
       const { favicon, title } = info;
       const URL = new UrlParser(url);
-      return res.json({
-        url,
-        favicon,
-        title,
-        isHttps,
-        domain: URL.hostname,
-        path: URL.pathname,
-      });
+
+      request.defaults({ encoding: null }).get(
+        favicon, async (err, r, body) => {
+          res.json({
+            url,
+            title,
+            isHttps,
+            domain: URL.hostname,
+            path: URL.pathname,
+            favicon: {
+              url: encodeURIComponent(favicon),
+              buffer: body,
+            },
+          });
+        });
     } catch (error) {
       logging.error(error);
       return res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
@@ -73,56 +78,56 @@ router.get(
   },
 );
 // 추가
-router.post(
-  '/',
-  async (req, res) => {
-    const PROCESS = '추가';
-    try {
-      const {
-        favicon,
-        title,
-        isHttps,
-        domain,
-        path,
-      } = req.body;
-      let app = await new App({
-        title,
-        isHttps,
-        domain,
-        path,
-      }).save();
-      app = app.toObject();
-      if (!favicon) {
-        request.defaults({ encoding: null }).get(
-          favicon, async function (err, r, body) {
-            try {
-              const url = await upload({
-                filename: `${keyGen()}${pathLib.extname(favicon) || '.jpg'}`,
-                dir: 'favicon',
-                content: body,
-              });
-              await App.updateOne({
-                $set: { favicon: url },
-              }).save();
-              app.favicon = url;
-              res.json(fromMongo(app));
-            } catch (error) {
-              logging.error(error);
-              res.status(500).json({ message: `에러: 이미지가 정상적으로 업로드 되지 않았습니다.` });
-            }
-          });
-      } else {
-        res.json(fromMongo(app));
-      }
-    } catch (error) {
-      logging.error(error);
-      res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
-    }
-  },
-);
+// router.post(
+//   '/',
+//   async (req, res) => {
+//     const PROCESS = '추가';
+//     try {
+//       const {
+//         favicon,
+//         title,
+//         isHttps,
+//         domain,
+//         path,
+//       } = req.body;
+//       let app = await new App({
+//         title,
+//         isHttps,
+//         domain,
+//         path,
+//       }).save();
+//       app = app.toObject();
+//       if (!favicon) {
+//         request.defaults({ encoding: null }).get(
+//           favicon, async function (err, r, body) {
+//             try {
+//               const url = await upload({
+//                 filename: `${keyGen()}${pathLib.extname(favicon) || '.jpg'}`,
+//                 dir: 'favicon',
+//                 content: body,
+//               });
+//               await App.updateOne({
+//                 $set: { favicon: url },
+//               }).save();
+//               app.favicon = url;
+//               res.json(fromMongo(app));
+//             } catch (error) {
+//               logging.error(error);
+//               res.status(500).json({ message: `에러: 이미지가 정상적으로 업로드 되지 않았습니다.` });
+//             }
+//           });
+//       } else {
+//         res.json(fromMongo(app));
+//       }
+//     } catch (error) {
+//       logging.error(error);
+//       res.status(500).json({ message: `${NAME} ${PROCESS} 에러` });
+//     }
+//   },
+// );
 // 추가(파일)
 router.post(
-  '/withCustomImg',
+  '/',
   multer.single('file'),
   async (req, res) => {
     const PROCESS = '추가';
@@ -134,13 +139,16 @@ router.post(
         domain,
         path,
       } = JSON.parse(body.data);
-      const url = await upload({
-        filename: `${keyGen()}${pathLib.extname(file.originalname)}`,
-        dir: 'appImages',
-        content: file.buffer,
-      });
+      let url;
+      if (file) {
+        url = await upload({
+          filename: `${keyGen()}${pathLib.extname(file.originalname)}`,
+          dir: 'favicon',
+          content: file.buffer,
+        });
+      }
       let app = await new App({
-        favicon: url,
+        favicon: file ? url : undefined,
         title,
         isHttps,
         domain,

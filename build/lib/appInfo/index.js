@@ -57,14 +57,6 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
-var _http = require('http');
-
-var _http2 = _interopRequireDefault(_http);
-
-var _url = require('url');
-
-var _url2 = _interopRequireDefault(_url);
-
 var _request = require('request');
 
 var _request2 = _interopRequireDefault(_request);

@@ -22,7 +22,8 @@ var App = new Schema({
     type: String
   },
   favicon: {
-    type: String
+    type: String,
+    default: 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png'
   },
   title: {
     type: String

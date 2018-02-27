@@ -15,221 +15,57 @@ const styles = theme => ({
     textAlign: 'right',
   },
 });
-const defaultImg = 'https://storage.googleapis.com/nonohyes20180219/favicon/no_image.png';
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      url: '',
-      favicon: {
-        url: '',
-        success: false,
-      },
-      title: '',
-      doUseUploadedImg: false,
-      uploadedImg: null,
-    };
-  }
-  componentWillReceiveProps(nextProps) {
-    const { data } = nextProps.urlInfo;
-    if (data &&
-      JSON.stringify(this.props.urlInfo.data) !==
-        JSON.stringify(data)
-    ) {
-      this.setState({
-        url: data.url,
-        favicon: {
-          ...this.state.favicon,
-          url: data.favicon,
-        },
-        title: data.title,
-      });
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.favicon.url !== prevState.favicon.url) {
-      const img = new Image();
-      img.onload = () => {
-        if (img.src === this.state.favicon.url) {
-          // 비동기 실패 로드 차단
-          this.setState({
-            favicon: {
-              ...this.state.favicon,
-              success: true,
-            },
-          });
-        }
-      };
-      img.onerror = () => {
-        if (img.src === this.state.favicon.url) {
-          this.setState({
-            favicon: {
-              ...this.state.favicon,
-              success: false,
-            },
-          });
-        }
-      };
-      img.src = this.state.favicon.url;
-    }
-  }
-  toAppPage = () => {
-    this.props.init();
-    this.props.toAppPage();
-  };
-  handleCancel = () => {
-    this.props.init();
-  };
-  handleSubmit = async () => {
-    const {
-      isHttps,
-      domain,
-      path,
-    } = this.props.urlInfo.data;
-    const {
-      title,
-      favicon,
-      doUseUploadedImg,
-      uploadedImg,
-    } = this.state;
-    if (doUseUploadedImg && uploadedImg) {
-      const file = await resizeImage.fromCanvas(uploadedImg.canvas);
-      const formData = new FormData();
-      formData.append(
-        'file',
-        file,
-        uploadedImg.name,
-      );
-      formData.append(
-        'data',
-        JSON.stringify({
-          isHttps,
-          domain,
-          path,
-          title,
-        }),
-      );
-      this.props.submit(formData, {
-        withCustomImg: true,
-      });
-    } else {
-      this.props.submit({
-        isHttps,
-        domain,
-        path,
-        title,
-        favicon: favicon.success ? favicon.url : null
-      });
-    }
-  };
-  handleInputChange = (prop, mode) => {
-    if (!mode) {
-      return e => {
-        this.setState({ [prop]: e.target.value });
-      };
-    } else if (mode ==='favicon') {
-      return e => {
-        this.setState({
-          favicon: {
-            ...this.state.favicon,
-            [prop]: e.target.value,
-          },
-        });
-      };
-    } else if (mode === 'switch') {
-      return e => {
-        this.setState({ [prop]: e.target.checked });
-      };
-    } else if (mode === 'img') {
-      return e => {
-        const input = e.target;
-        if (input.files && input.files[0]) {
-          const reader = new FileReader();
-          reader.onload = re => {
-            const img = new Image();
-            img.onload = () => {
-              const canvas = document.createElement('canvas');
-              const ctx = canvas.getContext('2d');
-              canvas.width = img.width;
-              canvas.height = img.height;
-              ctx.drawImage(img, 0, 0, img.width, img.height);
-              this.setState({
-                uploadedImg: {
-                  canvas,
-                  name: input.files[0].name,
-                  url: canvas.toDataURL(),
-                },
-              });
-            };
-            img.src = re.target.result;
-          };
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-    }
-  };
   render() {
     const {
       classes,
-      urlInfo,
-      urlInfoFound,
-      getUrlInfo,
-      add,
+      inputs,
+      urlInfoForm,
+      handleInputChange,
+      imgUrl,
+      formSuccess,
+      formFetching,
+      handleBtnA,
+      handleBtnB,
     } = this.props;
-    const {
-      url,
-      favicon,
-      title,
-      doUseUploadedImg,
-      uploadedImg,
-    } = this.state;
-    const urlInfoSuccess =
-      urlInfoFound && urlInfo.data && !urlInfo.isFetching && !urlInfo.error;
-    const addSuccess =
-      add.data && !add.isFetching && !add.error;
     return (
       <div className={classes.wrapper}>
         <UrlForm
           inputs={{
-            url,
+            url: inputs.url,
           }}
-          handleInputChange={this.handleInputChange}
-          loading={urlInfo.isFetching}
-          success={urlInfoSuccess}
-          onSubmit={getUrlInfo}
+          handleInputChange={handleInputChange}
+          {...urlInfoForm}
         />
         {
-          urlInfoSuccess ?
+          urlInfoForm.success ?
             <React.Fragment>
               <UrlInfo
                 inputs={{
-                  favicon,
-                  title,
-                  doUseUploadedImg,
-                  uploadedImg,
+                  title: inputs.title,
+                  doUseUploadedImg: inputs.doUseUploadedImg,
                 }}
-                success={addSuccess}
-                handleInputChange={this.handleInputChange}
-                defaultImg={defaultImg}
+                imgUrl={imgUrl}
+                disabled={formSuccess}
+                handleInputChange={handleInputChange}
               />
               <div className={classes.buttons}>
                 <LoadingButton
                   variant="raised"
                   color="primary"
-                  loading={add.isFetching}
-                  disabled={add.isFetching}
-                  success={addSuccess}
-                  onClick={addSuccess ?
-                    this.toAppPage : this.handleSubmit}
+                  loading={formFetching}
+                  disabled={formFetching}
+                  success={formSuccess}
+                  onClick={handleBtnA.onClick}
                 >
-                  { addSuccess ? 'To App Page' : 'Submit' }
+                  { handleBtnA.text }
                 </LoadingButton>
                 <Button
                   color="primary"
-                  onClick={this.handleCancel}
-                  disabled={add.isFetching}
+                  onClick={handleBtnB.onClick}
+                  disabled={formFetching}
                 >
-                  { addSuccess ? 'Add Another' : 'Cancel' }
+                  { handleBtnB.text }
                 </Button>
               </div>
             </React.Fragment>
