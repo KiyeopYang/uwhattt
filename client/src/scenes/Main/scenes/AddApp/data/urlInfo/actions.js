@@ -20,7 +20,7 @@ const request = (url) => {
     dispatch(waiting());
     try {
       const data = await apiFetch({
-        path: `/app/info/${encodeURIComponent(url)}`,
+        path: `/app/info/${url}`,
       });
       dispatch(success(data));
       return data;

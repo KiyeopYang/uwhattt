@@ -250,7 +250,7 @@ const mapStateToProps = state => ({
   add: state.main.addApp.data.add,
 });
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: path => push(path),
+  push,
   notice: noticeDialogActions.on,
   loader,
   urlInfoRequest: urlInfoActions.request,

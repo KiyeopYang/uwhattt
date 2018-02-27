@@ -4,14 +4,13 @@
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/build/asset-manifest.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/build/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/asset-manifest.json" afterPath="$PROJECT_DIR$/client/build/asset-manifest.json" />
+      <change beforePath="$PROJECT_DIR$/client/build/index.html" afterPath="$PROJECT_DIR$/client/build/index.html" />
       <change beforePath="$PROJECT_DIR$/client/build/service-worker.js" afterPath="$PROJECT_DIR$/client/build/service-worker.js" />
-      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.908e2c32.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.908e2c32.css.map" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.9d6b84e1.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.9d6b84e1.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.05cea0b6.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.05cea0b6.js.map" afterPath="" />
       <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -615,12 +614,12 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="28324000" />
+      <workItem from="1519463586255" duration="28632000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71072000" />
+    <option name="totallyTimeSpent" value="71380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="618" y="0" width="1305" height="1038" extended-state="0" />
