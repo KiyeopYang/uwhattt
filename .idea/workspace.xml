@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" afterPath="$PROJECT_DIR$/client/public/index.html" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" afterPath="$PROJECT_DIR$/src/lib/GCSFileManager/index.js" />
+      <change beforePath="$PROJECT_DIR$/client/build/asset-manifest.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/service-worker.js" afterPath="$PROJECT_DIR$/client/build/service-worker.js" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.908e2c32.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.908e2c32.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.9d6b84e1.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.9d6b84e1.js.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,7 +40,7 @@
             <entry file="file://$PROJECT_DIR$/src/lib/GCSFileManager/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="140">
-                  <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+                  <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -609,12 +615,12 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="27887000" />
+      <workItem from="1519463586255" duration="28324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70635000" />
+    <option name="totallyTimeSpent" value="71072000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="618" y="0" width="1305" height="1038" extended-state="0" />
@@ -1067,7 +1073,7 @@
     <entry file="file://$PROJECT_DIR$/src/lib/GCSFileManager/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>

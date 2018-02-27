@@ -15,12 +15,12 @@ const {
 } = makeFetchActions(
   ACTIONS,
 );
-const request = (id) => {
+const request = (url) => {
   return async (dispatch) => {
     dispatch(waiting());
     try {
       const data = await apiFetch({
-        path: `/app/info/${id}`,
+        path: `/app/info/${encodeURIComponent(url)}`,
       });
       dispatch(success(data));
       return data;
