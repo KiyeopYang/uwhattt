@@ -33,12 +33,13 @@ function getId() {
 function setId(key) {
   localStorage.setItem('id', key);
 }
+const INIT_APP = [{"favicon":"https://storage.googleapis.com/nonohyes20180219/favicon/nAgrPBYxaXYMiiN4b5s5DeixwWJalptE","title":"NAVER","isHttps":true,"domain":"www.naver.com","path":"","__v":0,"id":"5a94eebe04174f1def7c936c"},{"favicon":"https://storage.googleapis.com/nonohyes20180219/favicon/XSj0JtJffyRc3uvlEfLARYhkKmp2rtQx","title":"페이스북","isHttps":true,"domain":"facebook.com","path":"","__v":0,"id":"5a94eef904174f1def7c936d"},{"favicon":"https://storage.googleapis.com/nonohyes20180219/favicon/wpm5RZ482ElJ1BfB39rUiQD4XEklKhJb","title":"YouTube","isHttps":true,"domain":"youtube.com","path":"","__v":0,"id":"5a94ef1a04174f1def7c936e"}];
 function init() {
   if (!getId()) {
     setId('nonmember');
   }
   if (!getAppList()) {
-    setAppList([]);
+    setAppList(INIT_APP);
   }
 }
 function isLoggedIn() {

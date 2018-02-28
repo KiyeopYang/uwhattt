@@ -64,7 +64,7 @@ function Bar(props) {
                 autoFocus
                 classes={{ input: classes.input }}
                 disableUnderline
-                placeholder="Nonohyes"
+                placeholder="Webs"
               />
             </FormControl> :
             <div
@@ -77,7 +77,7 @@ function Bar(props) {
                 color="inherit"
                 onClick={onTitleClick}
               >
-                안돼 안돼 돼
+                Webs
                 <SearchIcon/>
               </Typography>
             </div>

@@ -3,7 +3,6 @@ import Layout from './components/Layout';
 import App from './components/App';
 
 function AppView({ app }) {
-  console.log('APpView', app);
   return (
     <Layout>
       {

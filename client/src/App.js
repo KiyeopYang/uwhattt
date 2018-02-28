@@ -33,9 +33,7 @@ class App extends React.Component {
   render() {
     const {
       noticeDialog,
-      state,
     } = this.props;
-    console.log(state);
     return (
       <React.Fragment>
         <Main />

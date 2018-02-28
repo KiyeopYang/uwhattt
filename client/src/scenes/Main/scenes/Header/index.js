@@ -23,7 +23,7 @@ class Header extends React.Component {
   onSelect = (clicked) => {
     const { push } = this.props;
     switch (clicked) {
-      case 'titleClick':
+      case 'appList':
         // 잠시
         // this.setState({ isSearchMode: true });
         push('/appList');
@@ -47,7 +47,7 @@ class Header extends React.Component {
         <Bar
           isSearchMode={isSearchMode}
           onMenuIconClick={this.toggleDrawer(true)}
-          onTitleClick={() => this.onSelect('titleClick')}
+          onTitleClick={() => this.onSelect('appList')}
           onMyAppClick={() => this.onSelect('myApp')}
         />
         <DrawerMenu

@@ -42,11 +42,29 @@ function DrawerMenu(props) {
             <ListItem
               className={classes.menuItem}
               button
+              onClick={() => onSelect('appList')}
+            >
+              <ListItemText
+                classes={{ primary: classes.primary }}
+                primary={"앱 보기"}
+              />
+            </ListItem>
+            <ListItem
+              className={classes.menuItem}
+              button
               onClick={() => onSelect('addApp')}
             >
               <ListItemText
                 classes={{ primary: classes.primary }}
                 primary={"앱 등록"}
+              />
+            </ListItem>
+            <ListItem
+              className={classes.menuItem}
+            >
+              <ListItemText
+                classes={{ primary: classes.primary }}
+                primary={"kiyeopyang@gmail.com"}
               />
             </ListItem>
           </List>
