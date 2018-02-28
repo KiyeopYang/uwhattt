@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4827fc0-fad9-478c-9a97-9ae5a9ea8b74" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/client/.idea/workspace.xml" afterPath="$PROJECT_DIR$/client/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/src/nothing.js" afterPath="$PROJECT_DIR$/client/src/nothing.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/index.js" />
-      <change beforePath="$PROJECT_DIR$/src/routes/app/index.js" afterPath="$PROJECT_DIR$/src/routes/app/index.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" afterPath="$PROJECT_DIR$/client/src/scenes/Main/scenes/AddApp/data/urlInfo/actions.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -387,8 +384,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="454" />
-    <option name="width" value="1483" />
+    <option name="x" value="55" />
+    <option name="width" value="1744" />
     <option name="height" value="1038" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -610,12 +607,12 @@
       <workItem from="1519289197613" duration="47000" />
       <workItem from="1519317281205" duration="1940000" />
       <workItem from="1519458492151" duration="4119000" />
-      <workItem from="1519463586255" duration="29697000" />
+      <workItem from="1519463586255" duration="30159000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72445000" />
+    <option name="totallyTimeSpent" value="72907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />

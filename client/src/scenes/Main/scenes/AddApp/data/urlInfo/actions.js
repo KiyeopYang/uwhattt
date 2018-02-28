@@ -19,6 +19,8 @@ const request = (url) => {
   return async (dispatch) => {
     dispatch(waiting());
     try {
+      console.log(`/app/info/${encodeURIComponent(url)}`);
+      console.log(`/app/info/${url}`);
       const data = await apiFetch({
         path: `/app/info/${url}`,
       });
