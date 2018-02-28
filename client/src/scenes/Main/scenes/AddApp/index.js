@@ -42,6 +42,10 @@ class AddApp extends React.Component {
     };
   }
   getUrlInfo = (url) => {
+    console.log(encodeURIComponent(url));
+    console.log(url);
+    console.log(encodeURI(url));
+    console.log(encodeURI(`https://nonohyes.com/api/app/info/${url}`));
     this.props.urlInfoRequest(encodeURIComponent(url))
       .then(() => {
         const { data } = this.props.urlInfo;

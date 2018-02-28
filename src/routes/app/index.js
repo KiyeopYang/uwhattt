@@ -30,6 +30,7 @@ const NAME = '앱';
 router.get(
   '/info/:url',
   async (req, res) => {
+    console.log(req.params);
     const PROCESS = '정보 조회';
     const baseUrl = req.params.url;
     let url = decodeURIComponent(baseUrl);
