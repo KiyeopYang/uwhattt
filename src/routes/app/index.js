@@ -41,12 +41,12 @@ router.get(
       let info;
       if (!httpsIncluded && !httpIncluded) {
         try {
-          url = `https://${baseUrl}`;
-          info = await getInfo(url);
+          info = await getInfo(`https://${baseUrl}`)
+            .catch(() => getInfo(`https://www.${baseUrl}`));
           isHttps = true;
         } catch (error) {
-          url = `http://${baseUrl}`;
-          info = await getInfo(url);
+          info = await getInfo(`http://${baseUrl}`)
+            .catch(() => getInfo(`http://www.${baseUrl}`));
         }
       } else {
         info = await getInfo(url);

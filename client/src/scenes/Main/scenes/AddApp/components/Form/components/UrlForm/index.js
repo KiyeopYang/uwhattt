@@ -23,10 +23,10 @@ class UrlForm extends React.Component {
       <form>
         <TextField
           id="urlForm"
-          label="URL"
+          label="Domain"
           margin="normal"
           fullWidth
-          helperText="ex) https://google.com"
+          helperText="ex)google.com, www.naver.com"
           value={url}
           onChange={handleInputChange('url')}
           disabled={success}

@@ -16,7 +16,24 @@
 // 	console.log(d);
 // });
 
-const url = 'https://mamre.kr';
-const a = encodeURI(url);
-const b = encodeURIComponent(url);
-console.log(a, b);
+function getInfo(n) {
+  return new Promise((resolve, reject) => {
+    if (n > 0) {
+      resolve(true);
+    } else {
+      reject(false);
+    }
+  });
+}
+async function test () {
+  try {
+    const url = 'https://naver.com';
+    const result = await getInfo(0)
+      .catch(() => getInfo(2));
+    console.log(result);
+  } catch (error) {
+    console.log('ERROR: ', error);
+  }
+}
+test();
+
